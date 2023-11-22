@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61ff82cbf0142a401a48a8161e1595a",
+    "content-hash": "607decfffb64e8d22171887dd76cccb6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1766,6 +1766,67 @@
                 }
             ],
             "time": "2023-10-27T15:25:26+00:00"
+        },
+        {
+            "name": "nasyrov/laravel-enums",
+            "version": "v1.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasyrov/laravel-enums.git",
+                "reference": "050b547ce3b0268f1eff2ab5092db1ed13d2b088"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasyrov/laravel-enums/zipball/050b547ce3b0268f1eff2ab5092db1ed13d2b088",
+                "reference": "050b547ce3b0268f1eff2ab5092db1ed13d2b088",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^5.5|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5|^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^6.0|^7.0|^8.0|^9.0",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nasyrov\\Laravel\\Enums\\EnumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nasyrov\\Laravel\\Enums\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evgenii Nasyrov",
+                    "email": "inasyrov@ya.ru",
+                    "homepage": "https://github.com/nasyrov",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel package for Enum implementation.",
+            "homepage": "https://github.com/nasyrov/laravel-enums",
+            "keywords": [
+                "enum",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/nasyrov/laravel-enums/issues",
+                "source": "https://github.com/nasyrov/laravel-enums/tree/v1.1.11"
+            },
+            "time": "2020-12-29T15:00:03+00:00"
         },
         {
             "name": "nesbot/carbon",

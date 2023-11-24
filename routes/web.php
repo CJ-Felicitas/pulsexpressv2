@@ -22,12 +22,22 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
-
-Route::get('/client', function () {
-    return view('client.client');
-});
-
 Route::post('/login', [AuthController::class,'login']);
+Route::post('/logout', [AuthController::class,'logout']);
+
+Route::middleware(['loggedin'])->group(function () {
+    // Routes accessible only to authenticated users
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+
+    Route::get('/client', function () {
+        return view('client.client');
+    });
+
+
+});
+
+
+
+

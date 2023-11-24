@@ -10,7 +10,6 @@ use App\Enums\UserTypeEnum;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -21,11 +20,9 @@ class AuthController extends Controller
                 'message' => 'Invalid Credentials'
             ]);
         }
-
         $user = Auth::user();
         // $token = $user->createToken('token')->plainTextToken;
         $user_type = null;
-
         switch ($user->user_type) {
             case 1:
                 $user_type = "ADMIN";
@@ -59,7 +56,6 @@ class AuthController extends Controller
                 break;
             case 12:
                 $user_type = "AICS";
-
             default:
                 break;
         }
@@ -68,7 +64,12 @@ class AuthController extends Controller
         } else {
             return redirect('/client')->with('user', $user);
         }
-
     }
 
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }

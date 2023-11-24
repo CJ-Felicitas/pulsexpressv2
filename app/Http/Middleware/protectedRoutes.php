@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class protectedRoutes
+class ProtectedRoutes
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,10 @@ class protectedRoutes
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!Auth::check()) {
+            return redirect('/');
+        }
+
         return $next($request);
     }
 }

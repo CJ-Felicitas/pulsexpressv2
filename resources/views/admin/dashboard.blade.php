@@ -775,7 +775,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="login.html">Logout</a>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit">Logout</button>
+                                </form>
+                                {{-- <a class="btn btn-primary" href="/logout">Logout</a> --}}
                             </div>
                         </div>
                     </div>

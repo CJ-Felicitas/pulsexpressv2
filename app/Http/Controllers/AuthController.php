@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Enums\UserTypeEnum;
 class AuthController extends Controller
 {
     public function login(Request $request) {
@@ -17,13 +17,13 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            return response([
-                'message' => 'Something went wrong'
-            ], Response::HTTP_UNAUTHORIZED);
+            return view('login', [
+                'message' => 'Invalid Credentials'
+            ]);
         }
 
         $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken;
+        // $token = $user->createToken('token')->plainTextToken;
         $user_type = null;
 
         switch ($user->user_type) {
@@ -63,13 +63,12 @@ class AuthController extends Controller
             default:
                 break;
         }
+        if ($user->user_type == UserTypeEnum::ADMIN) {
+            return redirect('/dashboard')->with('user', $user);
+        } else {
+            return redirect('/client')->with('user', $user);
+        }
 
-        return response()->json([
-            'message' => 'ok',
-            'token' => $token,
-            'user' => $user,
-            'user_type' => $user_type
-        ], Response::HTTP_OK);
     }
 
 }

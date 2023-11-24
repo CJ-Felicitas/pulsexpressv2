@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\{
+    AuthController,
+    SearchFunctionController,
+    OverviewController,
+    RegistrationController
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +23,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 });
+
+Route::get('/client', function () {
+    return view('client.client');
+});
+
+Route::post('/login', [AuthController::class,'login']);

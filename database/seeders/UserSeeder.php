@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'name' => 'Pantawid Pamilyang Pilipino Program',
             'username'=> 'fourps',
             'password'=> Hash::make('fourps@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::FOURPS
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'name' => 'Sustainable Livelihood Program',
             'username'=> 'slp',
             'password'=> Hash::make('slp@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::SLP
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'name' => 'Kapit Bisig Laban Sa Kahirapan',
             'username'=> 'kalahi',
             'password'=> Hash::make('kalahi@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::KALAHI
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'name' => 'Social Pension Program',
             'username'=> 'spp',
             'password'=> Hash::make('spp@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::SOCIAL_PENSION_PROGRAM
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
             'name' => 'Supplementary Feeding Program',
             'username'=> 'sfp',
             'password'=> Hash::make('sfp@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::FEEDING_PROGRAM
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
             'name' => 'Disaster Risk Reduction And Management',
             'username'=> 'drrm',
             'password'=> Hash::make('drrm@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::DRRM
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
@@ -85,7 +85,8 @@ class UserSeeder extends Seeder
             'name' => 'Assistance To Individuals In Crisis Situations',
             'username'=> 'aics',
             'password'=> Hash::make('aics@123'),
-            'user_type' => UserTypeEnum::ADMIN
+            'user_type' => UserTypeEnum::AICS
+
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);

@@ -60,9 +60,9 @@ class AuthController extends Controller
                 break;
         }
         if ($user->user_type == UserTypeEnum::ADMIN) {
-            return redirect('/dashboard')->with('user', $user);
+            return redirect('/admin/dashboard')->with('user', $user);
         } else {
-            return redirect('/client')->with('user', $user);
+            return redirect('/client/dashboard')->with('user', $user);
         }
     }
 

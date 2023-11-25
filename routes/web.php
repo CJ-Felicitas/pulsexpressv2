@@ -46,6 +46,11 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.dashboard');
         });
 
+        Route::get('/target', function () {
+            return view('admin.target');
+        });
+
+
         // provinces for the admin
         Route::prefix('provinces')->group(function () {
             Route::get('/davaodeoro', function () {

@@ -48,7 +48,7 @@
             </div>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/admin/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
             </li>
@@ -98,7 +98,11 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Account Settings</span></a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/target">
+                    <i class="fas fa-fw fa-bullseye"></i>
+                    <span>Set Target</span></a>
+            </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">

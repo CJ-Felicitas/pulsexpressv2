@@ -44,3 +44,4 @@
 - Created a documentation page for the api routes and resources.
 - initially added two api routes [/dummyjson, /testapi].
 - added a new favicon.
+.

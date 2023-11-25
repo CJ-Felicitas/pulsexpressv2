@@ -43,20 +43,21 @@
                                     </div>
                                     <form class="user" method="POST" action="/login">
                                         @csrf
-                                            <div class="form-group">
+                                        <div class="form-group">
                                             <input name="username" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" name="password"
+                                                class="form-control form-control-user" id="exampleInputPassword"
+                                                placeholder="Password">
                                         </div>
                                         @if (isset($message) && $message == 'Invalid Credentials')
-                                        <div class="alert alert-danger" role="alert">
-                                        Login Failed, Please Try again.
-                                        </div>
-                                    @endif
+                                            <div class="alert alert-danger" role="alert">
+                                                Login Failed, Please Try again.
+                                            </div>
+                                        @endif
 
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
@@ -80,15 +81,15 @@
         </div>
 
     </div>
-<!-- Bootstrap core JavaScript -->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- Core plugin JavaScript -->
-<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Core plugin JavaScript -->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-<!-- Custom scripts for all pages -->
-<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
 </body>
 

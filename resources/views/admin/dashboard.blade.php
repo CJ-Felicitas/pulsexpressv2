@@ -64,17 +64,17 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Davao De Oro</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro">Davao De Oro</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Oriental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooriental">Davao Oriental</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Del Sur</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur">Davao Del Sur</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Del Norte</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte">Davao Del Norte</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao City</a>
+                        <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
                     </div>
                 </div>
             </li>
@@ -192,7 +192,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card border-left-secondary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             2nd Quarter
@@ -203,7 +203,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card border-left-success shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             3rd Quarter
@@ -214,7 +214,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card border-left-info shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             4th Quarter
@@ -225,7 +225,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card border-left-danger shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             1st Semester
@@ -236,7 +236,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card border-left-dark shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             2nd Semester
@@ -258,12 +258,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -274,14 +274,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -302,12 +294,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -318,14 +310,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -346,12 +330,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -362,14 +346,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -390,12 +366,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -406,14 +382,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -434,12 +402,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -450,14 +418,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -478,12 +438,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -494,14 +454,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -522,12 +474,12 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Province</th>
+                                                    <th>Physical Target</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -538,14 +490,6 @@
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -565,34 +509,26 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered"
                                          width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td>$170,750</td>
-                                                </tr>
-                                            </tbody>
+                                         <thead>
+                                            <tr>
+                                                <th>Province</th>
+                                                <th>Physical Target</th>
+                                                <th>Male Count</th>
+                                                <th>Female Count</th>
+                                                <th>Total Physical Count</th>
+                                                <th>Total Fund Allocation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Edinburgh</td>
+                                                <td>61</td>
+                                                <td>2011/04/25</td>
+                                                <td>$320,800</td>
+                                            </tr>
+                                        </tbody>
                                         </table>
                                     </div>
                                 </div>

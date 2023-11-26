@@ -5,7 +5,8 @@ use App\Http\Controllers\{
     AuthController,
     SearchFunctionController,
     OverviewController,
-    RegistrationController
+    RegistrationController,
+    QuartersController
 };
 
 /*
@@ -50,6 +51,16 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.target');
         });
 
+        Route::get('/activequarters', function () {
+            return view('admin.activequarters');
+        });
+
+        Route::prefix('quarters')->group(function () {
+            Route::post('/setfirstquarter', [QuartersController::class, 'firstquarter']);
+            Route::post('/setsecondquarter', [QuartersController::class, 'secondquarter']);
+            Route::post('/setthirdquarter', [QuartersController::class, 'thirdquarter']);
+            Route::post('/setfourthquarter', [QuartersController::class, 'fourthquarter']);
+        });
 
         // provinces for the admin
         Route::prefix('provinces')->group(function () {

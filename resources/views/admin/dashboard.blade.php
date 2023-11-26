@@ -99,6 +99,11 @@
                     <span>Account Settings</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/admin/activequarters">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Quarter Settings</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/target">
                     <i class="fas fa-fw fa-bullseye"></i>
                     <span>Set Target</span></a>

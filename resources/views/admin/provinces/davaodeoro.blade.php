@@ -258,7 +258,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -294,7 +294,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -330,7 +330,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -366,7 +366,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -402,7 +402,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -438,7 +438,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -474,7 +474,7 @@
                                         <table class="table table-bordered" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Province</th>
+                                                    <th>Municipality</th>
                                                     <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
@@ -511,7 +511,7 @@
                                          width="100%" cellspacing="0">
                                          <thead>
                                             <tr>
-                                                <th>Province</th>
+                                                <th>Municipality</th>
                                                 <th>Physical Target</th>
                                                 <th>Male Count</th>
                                                 <th>Female Count</th>

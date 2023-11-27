@@ -6,7 +6,9 @@ use App\Http\Controllers\{
     SearchFunctionController,
     OverviewController,
     RegistrationController,
-    QuartersController
+    QuartersController,
+    TargetController,
+    MunicipalityController,
 };
 
 /*
@@ -32,9 +34,12 @@ Route::middleware(['loggedin'])->group(function () {
 
     // routes for the client side
     Route::prefix('client')->group(function () {
+
         Route::get('/dashboard', function () {
-            return view('client.client');
+            return view('client.dashboard');
         });
+
+        Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);
 
     });
 
@@ -47,13 +52,17 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.dashboard');
         });
 
-        Route::get('/target', function () {
-            return view('admin.target');
-        });
+        Route::get('/target', [TargetController::class, 'returnview']);
+        // Route::get('/target', function () {
+
+        //     return view('admin.target');
+        // });
 
         Route::get('/activequarters', function () {
             return view('admin.activequarters');
         });
+
+        Route::post('/applytarget', [TargetController::class, 'updateTarget']);
 
         Route::prefix('quarters')->group(function () {
             Route::post('/setfirstquarter', [QuartersController::class, 'firstquarter']);

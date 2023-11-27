@@ -48,7 +48,7 @@
                 Overview
             </div>
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
@@ -100,6 +100,11 @@
                     <span>Account Settings</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/admin/activequarters">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Quarter Settings</span></a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="/admin/target">
                     <i class="fas fa-fw fa-bullseye"></i>
                     <span>Set Target</span></a>
@@ -141,8 +146,11 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @if (session('user'))
-                                        {{ session('user')->username }}
+                                    @php
+                                        $user_data = session('user_data');
+                                    @endphp
+                                    @if ($user_data)
+                                        {{ $user_data->username }}
                                     @endif
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
@@ -151,7 +159,8 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -165,6 +174,14 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Target has been applied !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-12 mx-auto">
                             <div class="card shadow mb-4 mt-4">
@@ -175,106 +192,120 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                    <div>
+                                        <form action="/admin/applytarget" method="post">
+                                            @csrf
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="">Physical Count Target <span
-                                                            class="text-danger">*</span> </label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="">Budget Target <span
-                                                            class="text-danger">*</span> </label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="">Quarter<span class="text-danger">*</span>
-                                                    </label>
-                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                        <option value="" disabled selected>Select Quarter
-                                                        </option>
-                                                        <option>1st Quarter</option>
-                                                        <option>2nd Quarter</option>
-                                                        <option>3rd Quarter</option>
-                                                        <option>4th Quarter</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row my-2">
                                                 <div class="col-md-12">
-                                                    <label for="">Program <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                        <option value="" disabled selected>Select Program
-                                                        </option>
-                                                        <option>Pantawid Pamilyang Pilipino Program</option>
-                                                        <option>Sustainable Livelihood Program</option>
-                                                        <option>Kapit Bisig Laban sa Kahirapan</option>
-                                                        <option>Social Pension Program</option>
-                                                        <option>Supplementary Feeding Program</option>
-                                                        <option>Disaster Risk and Reduction Management</option>
-                                                        <option>Centenarrian Program</option>
-                                                        <option>Assistance to Individuals in Crisis Situation</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="">Physical Count Target <span
+                                                                    class="text-danger">*</span> </label>
+                                                            <input name="physical_target" type="text"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="">Budget Target <span
+                                                                    class="text-danger">*</span> </label>
+                                                            <input name="budget_target" type="text"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="">Quarter<span
+                                                                    class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="quarter" class="form-control"
+                                                                id="exampleFormControlSelect1">
+                                                                <option value="" disabled selected>Select Quarter
+                                                                </option>
+                                                                <option value="1">1st Quarter</option>
+                                                                <option value="2">2nd Quarter</option>
+                                                                <option value="3">3rd Quarter</option>
+                                                                <option value="4">4th Quarter</option>
+                                                            </select>
 
-                                            <div class="row">
-                                                <div class="col-md-12 text-right mt-3">
-                                                    <button type="submit" class="btn btn-primary">Set Target</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row my-2">
+                                                        <div class="col-md-12">
+                                                            <label for="">Program <span
+                                                                    class="text-danger">*</span>
+                                                            </label>
+                                                            <select name="program" class="form-control"
+                                                                id="exampleFormControlSelect1">
+                                                                <option value="" disabled selected>Select Program
+                                                                </option>
+                                                                <option value="1">Pantawid Pamilyang Pilipino
+                                                                    Program</option>
+                                                                <option value="2">Sustainable Livelihood Program
+                                                                </option>
+                                                                <option value="4">Kapit Bisig Laban sa Kahirapan
+                                                                </option>
+                                                                <option value="5">Social Pension Program</option>
+                                                                <option value="6">Supplementary Feeding Program
+                                                                </option>
+                                                                <option value="7">Disaster Risk and Reduction
+                                                                    Management</option>
+                                                                <option value="3">Centenarrian Program</option>
+                                                                <option value="8">Assistance to Individuals in
+                                                                    Crisis Situation
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-right mt-3">
+                                                            <button type="submit" class="btn btn-primary">Set
+                                                                Target</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
-
                                 </div>
                             </div>
                             {{--  --}}
                             <div>
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino Program</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino
+                                            Program</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['fourps'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Sustainable Livelihood Program</h6>
@@ -284,38 +315,33 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['slp'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Kapit Bisig Laban sa Kahirapan</h6>
@@ -325,38 +351,32 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['kalahi'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Social Pension Program</h6>
@@ -366,38 +386,33 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['spp'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Supplementary Feeding Program</h6>
@@ -407,79 +422,69 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['slp'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Disaster Risk and Reduction Management</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Disaster Risk Reduction Management</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['drrm'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Centenarrian Program</h6>
@@ -489,38 +494,33 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['centenarrian'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Assistance to Individual in Crisis Situation</h6>
@@ -530,38 +530,32 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
+                                                    @php
+                                                    $target_data = session('target_data');
+                                                @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['aics'] as $row)
+                                                            <tr>
+                                                                <td>{{$row->quarter_id}}</td>
+                                                                <td>{{$row->physical_target}}</td>
+                                                                <td>{{$row->budget_target}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 use App\Enums\UserTypeEnum;
+
 class AuthController extends Controller
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -20,8 +22,10 @@ class AuthController extends Controller
                 'message' => 'Invalid Credentials'
             ]);
         }
+
         $user = Auth::user();
-        // $token = $user->createToken('token')->plainTextToken;
+
+        // Map user_type to a human-readable format
         $user_type = null;
         switch ($user->user_type) {
             case 1:
@@ -52,21 +56,29 @@ class AuthController extends Controller
                 $user_type = "SOCIAL_PENSION_PROGRAM";
                 break;
             case 11:
-                $user_type = "CENTENARRIAN";
+                $user_type = "CENTENARIAN";
                 break;
             case 12:
                 $user_type = "AICS";
+                break;
             default:
                 break;
         }
+
+        // Store user data in the session
+        session(['user_data' => $user]);
+
+        // Return redirect to the appropriate dashboard route based on user_type
         if ($user->user_type == UserTypeEnum::ADMIN) {
-            return redirect('/admin/dashboard')->with('user', $user);
-        } else {
-            return redirect('/client/dashboard')->with('user', $user);
+            return redirect('/admin/dashboard');
+        }
+        if ($user->user_type != UserTypeEnum::ADMIN) {
+            return redirect('/client/dashboard');
         }
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

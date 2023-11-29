@@ -6,5 +6,6 @@ use Nasyrov\Laravel\Enums\Enum;
 
 class SemestersEnum extends Enum
 {
-    // constants
+    const FIRST_SEMESTER = 1;
+    const SECOND_SEMESTER = 2;
 }

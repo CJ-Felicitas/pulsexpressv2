@@ -25,52 +25,12 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        // Map user_type to a human-readable format
-        $user_type = null;
-        switch ($user->user_type) {
-            case 1:
-                $user_type = "ADMIN";
-                break;
-            case 2:
-                $user_type = "GUEST";
-                break;
-            case 3:
-                $user_type = "TESTER";
-                break;
-            case 5:
-                $user_type = "FOURPS";
-                break;
-            case 6:
-                $user_type = "KALAHI";
-                break;
-            case 7:
-                $user_type = "SLP";
-                break;
-            case 8:
-                $user_type = "DRRM";
-                break;
-            case 9:
-                $user_type = "FEEDING_PROGRAM";
-                break;
-            case 10:
-                $user_type = "SOCIAL_PENSION_PROGRAM";
-                break;
-            case 11:
-                $user_type = "CENTENARIAN";
-                break;
-            case 12:
-                $user_type = "AICS";
-                break;
-            default:
-                break;
-        }
-
         // Store user data in the session
         session(['user_data' => $user]);
 
         // Return redirect to the appropriate dashboard route based on user_type
         if ($user->user_type == UserTypeEnum::ADMIN) {
-            return redirect('/admin/dashboard');
+            return redirect('/admin/dashboard/firstquarter');
         }
         if ($user->user_type != UserTypeEnum::ADMIN) {
             return redirect('/client/dashboard');

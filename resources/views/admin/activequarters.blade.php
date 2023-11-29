@@ -103,7 +103,7 @@ if ($fourthquarterstatus) {
             </div>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
             </li>

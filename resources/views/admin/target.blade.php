@@ -49,7 +49,7 @@
             </div>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
             </li>
@@ -295,6 +295,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
+                                                                <td>{{$row->updated_at}}</td>
                                                                 <td></td>
                                                             </tr>
                                                         @endforeach

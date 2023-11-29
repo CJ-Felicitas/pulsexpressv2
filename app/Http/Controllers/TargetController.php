@@ -6,11 +6,12 @@ use App\Enums\QuartersEnum;
 use App\Enums\ProgramsEnum;
 use Illuminate\Http\Request;
 use DB;
-
+use Carbon\Carbon;
 class TargetController extends Controller
 {
     public function returnView(Request $request)
     {
+        // id mapping
         $fourps_id = [1, 2, 3, 4];
         $slp_id = [5, 6, 7, 8];
         $kalahi_id = [9, 10, 11, 12];
@@ -62,6 +63,7 @@ class TargetController extends Controller
                     ->update([
                         'physical_target' => $validate['physical_target'],
                         'budget_target' => $validate['budget_target'],
+                        'updated_at'=> Carbon::now(),
                     ]);
                 DB::commit();
                         return redirect()->back()->with('success','Target Applied');

@@ -278,14 +278,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('data')['fourps'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->province_id }}</td>
+                                                    <td>test</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

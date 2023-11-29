@@ -9,68 +9,49 @@ use App\Http\Controllers\{
     QuartersController,
     TargetController,
     MunicipalityController,
+    ClientDashboardController,
+    AdminDashboardController,
 };
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('login');
 });
-
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Routes accessible only to authenticated users
 Route::middleware(['loggedin'])->group(function () {
-
     // routes for the client side
     Route::prefix('client')->group(function () {
-
-        Route::get('/dashboard', function () {
-            return view('client.dashboard');
-        });
-
+        Route::get('/dashboard', [ClientDashboardController::class, 'returnView']);
+        Route::post('/submitreport', [ClientDashboardController::class, 'submitReport']);
         Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);
 
     });
 
-
     // routes for the admin side
     Route::prefix('admin')->group(function () {
-
-        // main dashboard of the admin
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
+        Route::prefix('/dashboard')->group(function () {
+            // first quarter dashboard
+            Route::get('/firstquarter', [AdminDashboardController::class, 'firstQuarter']);
+            Route::get('/secondquarter', [AdminDashboardController::class, 'secondQuarter']);
+            Route::get('/thirdquarter', [AdminDashboardController::class, 'thirdQuarter']);
+            Route::get('/fourthquarter', [AdminDashboardController::class, 'fourthQuarter']);
+            Route::get('/firstsemester', [AdminDashboardController::class, 'firstSemester']);
+            Route::get('/secondsemester', [AdminDashboardController::class, 'secondSemester']);
         });
 
         Route::get('/target', [TargetController::class, 'returnview']);
-        // Route::get('/target', function () {
-
-        //     return view('admin.target');
-        // });
-
         Route::get('/activequarters', function () {
             return view('admin.activequarters');
         });
-
         Route::post('/applytarget', [TargetController::class, 'updateTarget']);
-
         Route::prefix('quarters')->group(function () {
             Route::post('/setfirstquarter', [QuartersController::class, 'firstquarter']);
             Route::post('/setsecondquarter', [QuartersController::class, 'secondquarter']);
             Route::post('/setthirdquarter', [QuartersController::class, 'thirdquarter']);
             Route::post('/setfourthquarter', [QuartersController::class, 'fourthquarter']);
         });
-
         // provinces for the admin
         Route::prefix('provinces')->group(function () {
             Route::get('/davaodeoro', function () {

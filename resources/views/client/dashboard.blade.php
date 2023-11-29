@@ -114,11 +114,20 @@
                         <div class="col-md-8 mx-auto">
                             <h4 class="text-center">Upload Report</h4>
                             <hr>
-                            <form action="#" method="post">
+                            @if (session('report_success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Report has been submitted
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                            <form action="/client/submitreport" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="provinceSelect">Province</label>
-                                        <select name="province_id" class="form-control" id="provinceSelect">
+                                        <select required name="province_id" class="form-control" id="provinceSelect">
                                             <option value="" disabled selected>Select Province</option>
                                             <option value="2">Davao De Oro</option>
                                             <option value="3">Davao Occidental</option>
@@ -130,7 +139,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="municipalitySelect">Municipality</label>
-                                        <select name="municipality_id" class="form-control" id="municipalitySelect">
+                                        <select required name="municipality_id" class="form-control" id="municipalitySelect">
                                             <option value="" disabled selected>Select Municipality</option>
                                             <!-- Default option for municipality -->
                                         </select>
@@ -139,40 +148,45 @@
                                 <div class="row my-3">
                                     <div class="col-md-4">
                                         <label for="">Number of Females</label>
-                                        <input name="female_count" type="text" class="form-control" placeholder="Female Count" oninput="updateTotalCount()">
+                                        <input required name="female_count" type="text" class="form-control" placeholder="Female Count" oninput="updateTotalCount()">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Number of Males</label>
-                                        <input name="male_count" type="text" class="form-control" placeholder="Male Count" oninput="updateTotalCount()">
+                                        <input required name="male_count" type="text" class="form-control" placeholder="Male Count" oninput="updateTotalCount()">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Total Physical Count</label>
-                                        <input name="total_count" type="text" disabled value="" class="form-control" id="totalPhysicalCount">
+                                        <input type="hidden" name="total_count" id="totalPhysicalCounthidden">
+                                        <input type="text" disabled value="" class="form-control" id="totalPhysicalCount">
                                     </div>
                                 </div>
                                 <div class="row my-3">
                                     <div class="col-md-6">
                                         <label for="">Physical Target</label>
-                                        <input type="text" class="form-control" disabled value="10000000">
+                                        @php
+                                             $data = session('data')->first();
+
+                                        @endphp
+                                        <input type="text" class="form-control" disabled value="{{$data->physical_target}}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="">Budget Target</label>
-                                        <input type="text" class="form-control" disabled value="10000000000">
+                                        <input type="text" class="form-control" disabled value="{{$data->budget_target}}">
                                     </div>
                                 </div>
                                 <div class="row my-3">
                                     <div class="col-md-6">
                                         <label for="">Total Budget Utilized</label>
-                                        <input name="budget_utilized" type="text" class="form-control"
+                                        <input required name="budget_utilized" type="text" class="form-control"
                                             placeholder="Total Budget">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">Quarter</label>
-                                        <input disabled type="text" class="form-control" value="1st Quarter">
+                                        <input disabled type="text" class="form-control" value="{{$data->quarter_id}}">
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">Year</label>
-                                        <input disabled type="text" class="form-control" value="2024">
+                                        <input name="year" disabled type="text" class="form-control" value="2024">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -279,8 +293,8 @@
             var femaleCount = parseInt(document.getElementsByName('female_count')[0].value) || 0;
             var maleCount = parseInt(document.getElementsByName('male_count')[0].value) || 0;
             var totalPhysicalCount = femaleCount + maleCount;
-
             document.getElementById('totalPhysicalCount').value = totalPhysicalCount;
+            document.getElementById('totalPhysicalCounthidden').value = totalPhysicalCount;
         }
     </script>
 

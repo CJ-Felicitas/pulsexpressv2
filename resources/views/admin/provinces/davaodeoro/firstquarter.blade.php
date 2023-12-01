@@ -64,7 +64,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/provinces/davaodeoro">Davao De Oro</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
 
@@ -140,9 +140,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @if (session('user'))
-                                        {{ session('user')->username }}
-                                    @endif
+                                    @php
+                                    $user_data = session('user_data');
+                                @endphp
+                                @if ($user_data)
+                                    {{ $user_data->username }}
+                                @endif
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
 
@@ -180,7 +183,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodeoro/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -191,7 +194,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodeoro/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -202,7 +205,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodeoro/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -213,7 +216,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodeoro/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -259,7 +262,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -267,14 +269,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['fourps'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -295,7 +298,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -303,14 +305,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['slp'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -331,7 +334,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -339,14 +341,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['kalahi'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -367,7 +370,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -375,14 +377,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['spp'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -403,7 +406,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -411,14 +413,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['sfp'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -439,7 +442,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -447,14 +449,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['drrm'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -475,7 +478,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -483,14 +485,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('ddo_one')['centenarrian'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -512,7 +515,6 @@
                                          <thead>
                                             <tr>
                                                 <th>Municipality</th>
-                                                <th>Physical Target</th>
                                                 <th>Male Count</th>
                                                 <th>Female Count</th>
                                                 <th>Total Physical Count</th>
@@ -520,14 +522,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach (session('ddo_one')['aics'] as $data)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>{{ $data->municipality }}</td>
+                                                <td>{{ $data->total_male_count }}</td>
+                                                <td>{{ $data->total_female_count }}</td>
+                                                <td>{{ $data->total_physical_count }}</td>
+                                                <td>{{ $data->total_budget_utilized }}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                         </table>
                                     </div>

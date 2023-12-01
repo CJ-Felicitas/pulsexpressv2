@@ -11,6 +11,8 @@ use App\Http\Controllers\{
     MunicipalityController,
     ClientDashboardController,
     AdminDashboardController,
+    ProvinceController,
+    DavaoDeOroController,
 };
 
 Route::get('/', function () {
@@ -54,9 +56,16 @@ Route::middleware(['loggedin'])->group(function () {
         });
         // provinces for the admin
         Route::prefix('provinces')->group(function () {
-            Route::get('/davaodeoro', function () {
-                return view('admin.provinces.davaodeoro');
+            Route::prefix('/davaodeoro')->group(function (){
+                Route::get('firstquarter', [DavaoDeOroController::class, 'davaodeorofirstquarter']);
+                Route::get('secondquarter', [DavaoDeOroController::class, 'davaodeorosecondquarter']);
+                Route::get('thirdquarter', [DavaoDeOroController::class, 'davaodeorothirdquarter']);
+                Route::get('fourthquarter', [DavaoDeOroController::class, 'davaodeorofourthquarter']);
             });
+
+            // Route::get('/davaodeoro', function () {
+            //     return view('admin.provinces.davaodeoro');
+            // });
             Route::get('/davaooccidental', function () {
                 return view('admin.provinces.davaooccidental');
             });

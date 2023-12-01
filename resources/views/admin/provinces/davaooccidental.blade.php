@@ -64,7 +64,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/provinces/davaodeoro">Davao De Oro</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
 
@@ -140,9 +140,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @if (session('user'))
-                                        {{ session('user')->username }}
-                                    @endif
+                                    @php
+                                    $user_data = session('user_data');
+                                @endphp
+                                @if ($user_data)
+                                    {{ $user_data->username }}
+                                @endif
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
 

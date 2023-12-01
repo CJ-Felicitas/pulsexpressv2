@@ -65,7 +65,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/provinces/davaodeoro">Davao De Oro</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
 

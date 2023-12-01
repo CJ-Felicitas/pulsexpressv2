@@ -65,17 +65,17 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Davao De Oro</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Oriental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooriental">Davao Oriental</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Del Sur</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur">Davao Del Sur</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao Del Norte</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte">Davao Del Norte</a>
 
-                        <a class="collapse-item" href="buttons.html">Davao City</a>
+                        <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
                     </div>
                 </div>
             </li>

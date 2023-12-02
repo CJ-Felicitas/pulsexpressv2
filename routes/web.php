@@ -13,6 +13,11 @@ use App\Http\Controllers\{
     AdminDashboardController,
     ProvinceController,
     DavaoDeOroController,
+    DavaoCityController,
+    DavaoDelNorteController,
+    DavaoDelSurController,
+    DavaoOccidentalController,
+    DavaoOrientalController
 };
 
 Route::get('/', function () {
@@ -56,31 +61,66 @@ Route::middleware(['loggedin'])->group(function () {
         });
         // provinces for the admin
         Route::prefix('provinces')->group(function () {
-            Route::prefix('/davaodeoro')->group(function (){
+
+            Route::prefix('/davaodeoro')->group(function () {
                 Route::get('firstquarter', [DavaoDeOroController::class, 'davaodeorofirstquarter']);
                 Route::get('secondquarter', [DavaoDeOroController::class, 'davaodeorosecondquarter']);
                 Route::get('thirdquarter', [DavaoDeOroController::class, 'davaodeorothirdquarter']);
                 Route::get('fourthquarter', [DavaoDeOroController::class, 'davaodeorofourthquarter']);
             });
 
+            Route::prefix('/davaocity')->group(function () {
+                Route::get('firstquarter', [DavaoCityController::class, 'davaocityfirstquarter']);
+                Route::get('secondquarter', [DavaoCityController::class, 'davaocitysecondquarter']);
+                Route::get('thirdquarter', [DavaoCityController::class, 'davaocitythirdquarter']);
+                Route::get('fourthquarter', [DavaoCityController::class, 'davaocityfourthquarter']);
+            });
+
+            Route::prefix('/davaodelnorte')->group(function () {
+                Route::get('firstquarter', [DavaoDelNorteController::class, 'davaodelnortefirstquarter']);
+                Route::get('secondquarter', [DavaoDelNorteController::class, 'davaodelnortesecondquarter']);
+                Route::get('thirdquarter', [DavaoDelNorteController::class, 'davaodelnortethirdquarter']);
+                Route::get('fourthquarter', [DavaoDelNorteController::class, 'davaodelnortefourthquarter']);
+            });
+
+            Route::prefix('/davaodelsur')->group(function () {
+                Route::get('firstquarter', [DavaoDelSurController::class, 'davaodelsurfirstquarter']);
+                Route::get('secondquarter', [DavaoDelSurController::class, 'davaodelsursecondquarter']);
+                Route::get('thirdquarter', [DavaoDelSurController::class, 'davaodelsurthirdquarter']);
+                Route::get('fourthquarter', [DavaoDelSurController::class, 'davaodelsurfourthquarter']);
+            });
+
+            Route::prefix('/davaooccidental')->group(function () {
+                Route::get('firstquarter', [DavaoOccidentalController::class, 'davaooccidentalfirstquarter']);
+                Route::get('secondquarter', [DavaoOccidentalController::class, 'davaooccidentalsecondquarter']);
+                Route::get('thirdquarter', [DavaoOccidentalController::class, 'davaooccidentalthirdquarter']);
+                Route::get('fourthquarter', [DavaoOccidentalController::class, 'davaooccidentalfourthquarter']);
+            });
+
+            Route::prefix('/davaooriental')->group(function () {
+                Route::get('firstquarter', [DavaoOrientalController::class, 'davaoorientalfirstquarter']);
+                Route::get('secondquarter', [DavaoOrientalController::class, 'davaoorientalsecondquarter']);
+                Route::get('thirdquarter', [DavaoOrientalController::class, 'davaoorientalthirdquarter']);
+                Route::get('fourthquarter', [DavaoOrientalController::class, 'davaoorientalfourthquarter']);
+            });
             // Route::get('/davaodeoro', function () {
             //     return view('admin.provinces.davaodeoro');
             // });
-            Route::get('/davaooccidental', function () {
-                return view('admin.provinces.davaooccidental');
-            });
-            Route::get('/davaooriental', function () {
-                return view('admin.provinces.davaooriental');
-            });
-            Route::get('/davaodelsur', function () {
-                return view('admin.provinces.davaodelsur');
-            });
-            Route::get('/davaodelnorte', function () {
-                return view('admin.provinces.davaodelnorte');
-            });
-            Route::get('/davaocity', function () {
-                return view('admin.provinces.davaocity');
-            });
+            // Route::get('/davaooccidental', function () {
+            //     return view('admin.provinces.davaooccidental');
+            // });
+            // Route::get('/davaooriental', function () {
+            //     return view('admin.provinces.davaooriental');
+            // });
+            // Route::get('/davaodelsur', function () {
+            //     return view('admin.provinces.davaodelsur');
+            // });
+            // Route::get('/davaodelnorte', function () {
+            //     return view('admin.provinces.davaodelnorte');
+            // });
+            // Route::get('/davaocity', function () {
+            //     return view('admin.provinces.davaocity');
+            // });
         });
     });
 

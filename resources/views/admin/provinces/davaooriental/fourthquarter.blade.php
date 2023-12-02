@@ -66,15 +66,15 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao Occidental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooriental">Davao Oriental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelsur">Davao Del Sur</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur/firstquarter">Davao Del Sur</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelnorte">Davao Del Norte</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte/firstquarter">Davao Del Norte</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
+                        <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
                     </div>
                 </div>
             </li>
@@ -183,7 +183,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaooriental/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -194,7 +194,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaooriental/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -205,7 +205,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaooriental/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -216,7 +216,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaooriental/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -262,7 +262,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -270,14 +269,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['fourps'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -298,7 +298,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -306,14 +305,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['slp'] as $data)
                                                 <tr>
-                                                    <th>Municipality</th>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -334,7 +334,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -342,14 +341,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['kalahi'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -370,7 +370,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -378,14 +377,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['spp'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -406,7 +406,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -414,14 +413,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['sfp'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -442,7 +442,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -450,14 +449,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['drrm'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -478,7 +478,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
-                                                    <th>Physical Target</th>
                                                     <th>Male Count</th>
                                                     <th>Female Count</th>
                                                     <th>Total Physical Count</th>
@@ -486,14 +485,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (session('dor_four')['centenarrian'] as $data)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>$320,800</td>
+                                                    <td>{{ $data->municipality }}</td>
+                                                    <td>{{ $data->total_male_count }}</td>
+                                                    <td>{{ $data->total_female_count }}</td>
+                                                    <td>{{ $data->total_physical_count }}</td>
+                                                    <td>{{ $data->total_budget_utilized }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -515,7 +515,6 @@
                                          <thead>
                                             <tr>
                                                 <th>Municipality</th>
-                                                <th>Physical Target</th>
                                                 <th>Male Count</th>
                                                 <th>Female Count</th>
                                                 <th>Total Physical Count</th>
@@ -523,14 +522,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach (session('dor_four')['aics'] as $data)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>{{ $data->municipality }}</td>
+                                                <td>{{ $data->total_male_count }}</td>
+                                                <td>{{ $data->total_female_count }}</td>
+                                                <td>{{ $data->total_physical_count }}</td>
+                                                <td>{{ $data->total_budget_utilized }}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                         </table>
                                     </div>

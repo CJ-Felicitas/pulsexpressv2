@@ -170,7 +170,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Davao De Oro Overview</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Davao Del Norte Overview</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -183,7 +183,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/firstquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelnorte/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -194,7 +194,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/secondquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelnorte/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -205,7 +205,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/thirdquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelnorte/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -216,7 +216,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/fourthquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelnorte/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -269,7 +269,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['fourps'] as $data)
+                                                @foreach (session('ddn_one')['fourps'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -305,7 +305,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['slp'] as $data)
+                                                @foreach (session('ddn_one')['slp'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -341,7 +341,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['kalahi'] as $data)
+                                                @foreach (session('ddn_one')['kalahi'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -377,7 +377,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['spp'] as $data)
+                                                @foreach (session('ddn_one')['spp'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -413,7 +413,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['sfp'] as $data)
+                                                @foreach (session('ddn_one')['sfp'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -449,7 +449,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['drrm'] as $data)
+                                                @foreach (session('ddn_one')['drrm'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -485,7 +485,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['centenarrian'] as $data)
+                                                @foreach (session('ddn_one')['centenarrian'] as $data)
                                                 <tr>
                                                     <td>{{ $data->municipality }}</td>
                                                     <td>{{ $data->total_male_count }}</td>
@@ -522,7 +522,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (session('ddo_three')['aics'] as $data)
+                                            @foreach (session('ddn_one')['aics'] as $data)
                                             <tr>
                                                 <td>{{ $data->municipality }}</td>
                                                 <td>{{ $data->total_male_count }}</td>

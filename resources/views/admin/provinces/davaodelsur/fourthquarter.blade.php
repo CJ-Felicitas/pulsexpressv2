@@ -12,7 +12,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -66,7 +67,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao
+                            Occidental</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
 
@@ -141,11 +143,11 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     @php
-                                    $user_data = session('user_data');
-                                @endphp
-                                @if ($user_data)
-                                    {{ $user_data->username }}
-                                @endif
+                                        $user_data = session('user_data');
+                                    @endphp
+                                    @if ($user_data)
+                                        {{ $user_data->username }}
+                                    @endif
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
 
@@ -170,7 +172,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Davao De Oro Overview</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Davao Del Sur Overview</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -183,7 +185,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/firstquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelsur/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -194,7 +196,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/secondquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelsur/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -205,7 +207,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/thirdquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelsur/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -216,7 +218,7 @@
                             </a>
                         </div>
                         <div class="col-md-2 mb-4">
-                            <a href="/admin/provinces/davaodeoro/fourthquarter" style="text-decoration: none;">
+                            <a href="/admin/provinces/davaodelsur/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -254,7 +256,8 @@
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino Program</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino Program
+                                    </h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -269,14 +272,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['fourps'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['fourps'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -305,14 +308,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['slp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['slp'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -341,14 +344,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['kalahi'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['kalahi'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -377,14 +380,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['spp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['spp'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -413,14 +416,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['sfp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['sfp'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -434,7 +437,8 @@
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Disaster Risk and Reduction Management</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Disaster Risk and Reduction
+                                        Management</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -449,14 +453,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['drrm'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['drrm'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -485,14 +489,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (session('ddo_three')['centenarrian'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->municipality }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                @foreach (session('dds_four')['centenarrian'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -506,32 +510,32 @@
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Assistance to Individual in Crisis Situation</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Assistance to Individual in Crisis
+                                        Situation</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered"
-                                         width="100%" cellspacing="0">
-                                         <thead>
-                                            <tr>
-                                                <th>Municipality</th>
-                                                <th>Male Count</th>
-                                                <th>Female Count</th>
-                                                <th>Total Physical Count</th>
-                                                <th>Total Fund Allocation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (session('ddo_three')['aics'] as $data)
-                                            <tr>
-                                                <td>{{ $data->municipality }}</td>
-                                                <td>{{ $data->total_male_count }}</td>
-                                                <td>{{ $data->total_female_count }}</td>
-                                                <td>{{ $data->total_physical_count }}</td>
-                                                <td>{{ $data->total_budget_utilized }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
+                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Municipality</th>
+                                                    <th>Male Count</th>
+                                                    <th>Female Count</th>
+                                                    <th>Total Physical Count</th>
+                                                    <th>Total Fund Allocation</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (session('dds_four')['aics'] as $data)
+                                                    <tr>
+                                                        <td>{{ $data->municipality }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -541,63 +545,63 @@
 
 
 
-                    </div>
-                    <!-- End of Content Wrapper -->
-
                 </div>
-                <!-- End of Page Wrapper -->
+                <!-- End of Content Wrapper -->
 
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
+            </div>
+            <!-- End of Page Wrapper -->
 
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button class="btn btn-danger" type="submit">Logout</button>
-                                </form>
-                                {{-- <a class="btn btn-primary" href="/logout">Logout</a> --}}
-                            </div>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="btn btn-danger" type="submit">Logout</button>
+                            </form>
+                            {{-- <a class="btn btn-primary" href="/logout">Logout</a> --}}
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Bootstrap core JavaScript -->
-                <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-                <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-                <!-- Core plugin JavaScript -->
-                <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+            <!-- Core plugin JavaScript -->
+            <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-                <!-- Custom scripts for all pages -->
-                <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+            <!-- Custom scripts for all pages -->
+            <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-                <!-- Page level plugins -->
-                <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+            <!-- Page level plugins -->
+            <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
-                <!-- Page level custom scripts -->
-                <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-                <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+            <!-- Page level custom scripts -->
+            <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+            <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
 
-                <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-                <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-                <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+            <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+            <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+            <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
 
 </body>

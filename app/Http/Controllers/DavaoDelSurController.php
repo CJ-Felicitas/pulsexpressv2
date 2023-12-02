@@ -10,7 +10,7 @@ use App\Enums\QuartersEnum;
 
 use Carbon\Carbon;
 
-class DavaoDeOroController extends Controller
+class DavaoDelSurController extends Controller
 {
     private function getProvinceData($programId, $quarterId, $year, $provinceId)
     {
@@ -33,20 +33,23 @@ class DavaoDeOroController extends Controller
         return $data;
     }
 
-    public function davaodeorofirstquarter(Request $request)
+    public function davaodelsurfirstquarter(Request $request)
     {
         try {
-            $fourps = $this->getProvinceData(ProgramsEnum::FOURPS, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $slp = $this->getProvinceData(ProgramsEnum::SLP, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $kalahi = $this->getProvinceData(ProgramsEnum::KALAHI, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $spp = $this->getProvinceData(ProgramsEnum::SOCIAL_PENSION_PROGRAM, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $sfp = $this->getProvinceData(ProgramsEnum::FEEDING_PROGRAM, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $drrm = $this->getProvinceData(ProgramsEnum::DRRM, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $centenarrian = $this->getProvinceData(ProgramsEnum::CENTENARRIAN, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
-            $aics = $this->getProvinceData(ProgramsEnum::AICS, QuartersEnum::FIRST_QUARTER, Carbon::now()->year, ProvinceEnum::DAVAO_DE_ORO);
+            $q = QuartersEnum::FIRST_QUARTER;
+            $p = ProvinceEnum::DAVAO_DEL_SUR;
+            $y = Carbon::now()->year;
+            $fourps = $this->getProvinceData(ProgramsEnum::FOURPS, $q, $y, $p);
+            $slp = $this->getProvinceData(ProgramsEnum::SLP, $q, Carbon::now()->year, $p);
+            $kalahi = $this->getProvinceData(ProgramsEnum::KALAHI, $q, $y, $p);
+            $spp = $this->getProvinceData(ProgramsEnum::SOCIAL_PENSION_PROGRAM, $q, $y, $p);
+            $sfp = $this->getProvinceData(ProgramsEnum::FEEDING_PROGRAM, $q, $y, $p);
+            $drrm = $this->getProvinceData(ProgramsEnum::DRRM, $q, $y, $p);
+            $centenarrian = $this->getProvinceData(ProgramsEnum::CENTENARRIAN, $q, $y, $p);
+            $aics = $this->getProvinceData(ProgramsEnum::AICS, $q, $y, $p);
 
             session([
-                'ddo_one' => [
+                'dds_one' => [
                     'fourps' => $fourps,
                     'slp' => $slp,
                     'kalahi' => $kalahi,
@@ -61,7 +64,7 @@ class DavaoDeOroController extends Controller
             // return response()->json([
             //     'message' => $fourps
             // ]);
-            return view('admin.provinces.davaodeoro.firstquarter', ['ddo_one' => session('ddo_one')]);
+            return view('admin.provinces.davaodelsur.firstquarter', ['dds_one' => session('dds_one')]);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -70,11 +73,11 @@ class DavaoDeOroController extends Controller
         }
     }
 
-    public function davaodeorosecondquarter(Request $request)
+    public function davaodelsursecondquarter(Request $request)
     {
         try {
             $q = QuartersEnum::SECOND_QUARTER;
-            $p = ProvinceEnum::DAVAO_DE_ORO;
+            $p = ProvinceEnum::DAVAO_DEL_SUR;
             $y = Carbon::now()->year;
             $fourps = $this->getProvinceData(ProgramsEnum::FOURPS, $q, $y, $p);
             $slp = $this->getProvinceData(ProgramsEnum::SLP, $q, Carbon::now()->year, $p);
@@ -86,7 +89,7 @@ class DavaoDeOroController extends Controller
             $aics = $this->getProvinceData(ProgramsEnum::AICS, $q, $y, $p);
 
             session([
-                'ddo_two' => [
+                'dds_two' => [
                     'fourps' => $fourps,
                     'slp' => $slp,
                     'kalahi' => $kalahi,
@@ -101,7 +104,7 @@ class DavaoDeOroController extends Controller
             // return response()->json([
             //     'message' => $fourps
             // ]);
-            return view('admin.provinces.davaodeoro.secondquarter', ['ddo_two' => session('ddo_two')]);
+            return view('admin.provinces.davaodelsur.secondquarter', ['dds_two' => session('dds_two')]);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -110,11 +113,11 @@ class DavaoDeOroController extends Controller
         }
     }
 
-    public function davaodeorothirdquarter(Request $request)
+    public function davaodelsurthirdquarter(Request $request)
     {
         try {
             $q = QuartersEnum::THIRD_QUARTER;
-            $p = ProvinceEnum::DAVAO_DE_ORO;
+            $p = ProvinceEnum::DAVAO_DEL_SUR;
             $y = Carbon::now()->year;
             $fourps = $this->getProvinceData(ProgramsEnum::FOURPS, $q, $y, $p);
             $slp = $this->getProvinceData(ProgramsEnum::SLP, $q, Carbon::now()->year, $p);
@@ -126,7 +129,7 @@ class DavaoDeOroController extends Controller
             $aics = $this->getProvinceData(ProgramsEnum::AICS, $q, $y, $p);
 
             session([
-                'ddo_three' => [
+                'dds_three' => [
                     'fourps' => $fourps,
                     'slp' => $slp,
                     'kalahi' => $kalahi,
@@ -141,7 +144,7 @@ class DavaoDeOroController extends Controller
             // return response()->json([
             //     'message' => $fourps
             // ]);
-            return view('admin.provinces.davaodeoro.thirdquarter', ['ddo_three' => session('ddo_three')]);
+            return view('admin.provinces.davaodelsur.thirdquarter', ['dds_three' => session('dds_three')]);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -150,11 +153,11 @@ class DavaoDeOroController extends Controller
         }
     }
 
-    public function davaodeorofourthquarter(Request $request)
+    public function davaodelsurfourthquarter(Request $request)
     {
         try {
             $q = QuartersEnum::FOURTH_QUARTER;
-            $p = ProvinceEnum::DAVAO_DE_ORO;
+            $p = ProvinceEnum::DAVAO_DEL_SUR;
             $y = Carbon::now()->year;
             $fourps = $this->getProvinceData(ProgramsEnum::FOURPS, $q, $y, $p);
             $slp = $this->getProvinceData(ProgramsEnum::SLP, $q, Carbon::now()->year, $p);
@@ -166,7 +169,7 @@ class DavaoDeOroController extends Controller
             $aics = $this->getProvinceData(ProgramsEnum::AICS, $q, $y, $p);
 
             session([
-                'ddo_four' => [
+                'dds_four' => [
                     'fourps' => $fourps,
                     'slp' => $slp,
                     'kalahi' => $kalahi,
@@ -181,7 +184,7 @@ class DavaoDeOroController extends Controller
             // return response()->json([
             //     'message' => $fourps
             // ]);
-            return view('admin.provinces.davaodeoro.fourthquarter', ['ddo_four' => session('ddo_four')]);
+            return view('admin.provinces.davaodelsur.fourthquarter', ['dds_four' => session('dds_four')]);
 
         } catch (\Throwable $th) {
             return response()->json([

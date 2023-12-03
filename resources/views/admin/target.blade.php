@@ -79,7 +79,11 @@
                     </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
 
 
@@ -110,6 +114,11 @@
                     <span>Set Target</span></a>
             </li>
             <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-image"></i>
@@ -296,7 +305,7 @@
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
                                                                 <td>{{$row->updated_at}}</td>
-                                                                <td></td>
+
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -332,7 +341,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -368,7 +377,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -403,7 +412,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -439,7 +448,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -475,7 +484,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -511,7 +520,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
@@ -547,7 +556,7 @@
                                                                 <td>{{$row->quarter_id}}</td>
                                                                 <td>{{$row->physical_target}}</td>
                                                                 <td>{{$row->budget_target}}</td>
-                                                                <td></td>
+                                                                <td>{{$row->updated_at}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif

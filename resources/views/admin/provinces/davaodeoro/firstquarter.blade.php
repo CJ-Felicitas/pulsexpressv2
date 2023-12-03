@@ -47,7 +47,7 @@
                 Overview
             </div>
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
@@ -56,7 +56,7 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-map-pin"></i>
@@ -77,6 +77,11 @@
                         <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -99,11 +104,21 @@
                     <span>Account Settings</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/admin/activequarters">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Quarter Settings</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/target">
                     <i class="fas fa-fw fa-bullseye"></i>
                     <span>Set Target</span></a>
             </li>
             <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/client/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-image"></i>
@@ -258,7 +273,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="fourps" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -294,7 +309,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="slp" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -330,7 +345,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="kalahi" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -366,7 +381,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="spp" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -402,7 +417,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="sfp" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -438,7 +453,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="drrm" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -474,7 +489,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" width="100%" id="centenarrian" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Municipality</th>
@@ -511,7 +526,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered"
-                                         width="100%" cellspacing="0">
+                                         width="100%" cellspacing="0" id="aics">
                                          <thead>
                                             <tr>
                                                 <th>Municipality</th>
@@ -598,6 +613,18 @@
                 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
                 <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
                 <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+                <script>
+                    $(document).ready(function() {
+                       $('#fourps').DataTable(); // Initialize for Pantawid Pamilyang Pilipino Program table
+                       $('#slp').DataTable(); // Initialize for Sustainable Livelihood Program table
+                       $('#kalahi').DataTable();
+                       $('#spp').DataTable();
+                       $('#sfp').DataTable();
+                       $('#drrm').DataTable();
+                       $('#centenarrian').DataTable();
+                       $('#aics').DataTable();
+                    });
+                 </script>
 
 
 </body>

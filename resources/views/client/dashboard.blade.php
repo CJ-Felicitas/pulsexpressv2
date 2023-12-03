@@ -42,7 +42,7 @@
                     <span>Submit Report</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/client/history">
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
             </li>

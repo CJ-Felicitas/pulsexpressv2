@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Enums\ProvinceEnum;
 use App\Enums\QuartersEnum;
 use App\Enums\SemestersEnum;
+
 class AdminDashboardController extends Controller
 {
 
@@ -35,29 +36,28 @@ class AdminDashboardController extends Controller
             ->groupBy('province_id')
             ->get();
 
-            foreach ($data as $item) {
-                switch ($item->province_id) {
-                    case ProvinceEnum::DAVAO_CITY:
-                        $item->province_id = 'Davao City';
-                        break;
-                    case ProvinceEnum::DAVAO_DE_ORO:
-                        $item->province_id = 'Davao De Oro';
-                        break;
-                    case ProvinceEnum::DAVAO_DEL_NORTE:
-                        $item->province_id = 'Davao Del Norte';
-                        break;
-                    case ProvinceEnum::DAVAO_DEL_SUR:
-                        $item->province_id = 'Davao Del Sur';
-                        break;
-                    case ProvinceEnum::DAVAO_OCCIDENTAL:
-                        $item->province_id = 'Davao Occidental';
-                        break;
-                    case ProvinceEnum::DAVAO_ORIENTAL:
-                        $item->province_id = 'Davao Oriental';
-                        break;
-                }
+        foreach ($data as $item) {
+            switch ($item->province_id) {
+                case ProvinceEnum::DAVAO_CITY:
+                    $item->province_id = 'Davao City';
+                    break;
+                case ProvinceEnum::DAVAO_DE_ORO:
+                    $item->province_id = 'Davao De Oro';
+                    break;
+                case ProvinceEnum::DAVAO_DEL_NORTE:
+                    $item->province_id = 'Davao Del Norte';
+                    break;
+                case ProvinceEnum::DAVAO_DEL_SUR:
+                    $item->province_id = 'Davao Del Sur';
+                    break;
+                case ProvinceEnum::DAVAO_OCCIDENTAL:
+                    $item->province_id = 'Davao Occidental';
+                    break;
+                case ProvinceEnum::DAVAO_ORIENTAL:
+                    $item->province_id = 'Davao Oriental';
+                    break;
             }
-
+        }
         return $data;
     }
     // returns the data of a quarter
@@ -76,7 +76,6 @@ class AdminDashboardController extends Controller
             ->where('year', $year)
             ->groupBy('province_id')
             ->get();
-
 
         foreach ($data as $item) {
             switch ($item->province_id) {
@@ -114,7 +113,6 @@ class AdminDashboardController extends Controller
             $sfp = $this->getSemesterData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, SemestersEnum::FIRST_SEMESTER);
             $drrm = $this->getSemesterData(ProgramsEnum::DRRM, Carbon::now()->year, SemestersEnum::FIRST_SEMESTER);
             $aics = $this->getSemesterData(ProgramsEnum::AICS, Carbon::now()->year, SemestersEnum::FIRST_SEMESTER);
-
             session([
                 'data5' => [
                     'fourps' => $fourps,
@@ -127,9 +125,7 @@ class AdminDashboardController extends Controller
                     'aics' => $aics,
                 ]
             ]);
-
             return view('admin.quarters.firstsemester', ['data5' => session('data5')]);
-
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -138,7 +134,6 @@ class AdminDashboardController extends Controller
     }
     public function secondSemester(Request $request)
     {
-
         try {
             $fourps = $this->getSemesterData(ProgramsEnum::FOURPS, Carbon::now()->year, SemestersEnum::SECOND_SEMESTER);
             $slp = $this->getSemesterData(ProgramsEnum::SLP, Carbon::now()->year, SemestersEnum::SECOND_SEMESTER);
@@ -148,7 +143,6 @@ class AdminDashboardController extends Controller
             $sfp = $this->getSemesterData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, SemestersEnum::SECOND_SEMESTER);
             $drrm = $this->getSemesterData(ProgramsEnum::DRRM, Carbon::now()->year, SemestersEnum::SECOND_SEMESTER);
             $aics = $this->getSemesterData(ProgramsEnum::AICS, Carbon::now()->year, SemestersEnum::SECOND_SEMESTER);
-
             session([
                 'data6' => [
                     'fourps' => $fourps,
@@ -161,9 +155,7 @@ class AdminDashboardController extends Controller
                     'aics' => $aics,
                 ]
             ]);
-
             return view('admin.quarters.secondsemester', ['data6' => session('data6')]);
-
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage()
@@ -172,7 +164,6 @@ class AdminDashboardController extends Controller
     }
     public function firstQuarter(Request $request)
     {
-
         try {
             $fourps = $this->getProgramData(ProgramsEnum::FOURPS, Carbon::now()->year, QuartersEnum::FIRST_QUARTER);
             $slp = $this->getProgramData(ProgramsEnum::SLP, Carbon::now()->year, QuartersEnum::FIRST_QUARTER);
@@ -182,7 +173,6 @@ class AdminDashboardController extends Controller
             $sfp = $this->getProgramData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, QuartersEnum::FIRST_QUARTER);
             $drrm = $this->getProgramData(ProgramsEnum::DRRM, Carbon::now()->year, QuartersEnum::FIRST_QUARTER);
             $aics = $this->getProgramData(ProgramsEnum::AICS, Carbon::now()->year, QuartersEnum::FIRST_QUARTER);
-
             session([
                 'data1' => [
                     'fourps' => $fourps,
@@ -195,15 +185,12 @@ class AdminDashboardController extends Controller
                     'aics' => $aics,
                 ]
             ]);
-
             return view('admin.quarters.firstquarter', ['data1' => session('data1')]);
-
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage()
             ], 500);
         }
-
     }
 
     public function secondQuarter(Request $request)
@@ -216,7 +203,6 @@ class AdminDashboardController extends Controller
         $sfp = $this->getProgramData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, QuartersEnum::SECOND_QUARTER);
         $drrm = $this->getProgramData(ProgramsEnum::DRRM, Carbon::now()->year, QuartersEnum::SECOND_QUARTER);
         $aics = $this->getProgramData(ProgramsEnum::AICS, Carbon::now()->year, QuartersEnum::SECOND_QUARTER);
-
         session([
             'data2' => [
                 'fourps' => $fourps,
@@ -229,7 +215,6 @@ class AdminDashboardController extends Controller
                 'aics' => $aics,
             ]
         ]);
-
         return view('admin.quarters.secondquarter', ['data2' => session('data2')]);
     }
 
@@ -243,7 +228,6 @@ class AdminDashboardController extends Controller
         $sfp = $this->getProgramData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, QuartersEnum::THIRD_QUARTER);
         $drrm = $this->getProgramData(ProgramsEnum::DRRM, Carbon::now()->year, QuartersEnum::THIRD_QUARTER);
         $aics = $this->getProgramData(ProgramsEnum::AICS, Carbon::now()->year, QuartersEnum::THIRD_QUARTER);
-
         session([
             'data3' => [
                 'fourps' => $fourps,
@@ -256,7 +240,6 @@ class AdminDashboardController extends Controller
                 'aics' => $aics,
             ]
         ]);
-
         return view('admin.quarters.thirdquarter', ['data3' => session('data3')]);
     }
 
@@ -270,7 +253,6 @@ class AdminDashboardController extends Controller
         $sfp = $this->getProgramData(ProgramsEnum::FEEDING_PROGRAM, Carbon::now()->year, QuartersEnum::FOURTH_QUARTER);
         $drrm = $this->getProgramData(ProgramsEnum::DRRM, Carbon::now()->year, QuartersEnum::FOURTH_QUARTER);
         $aics = $this->getProgramData(ProgramsEnum::AICS, Carbon::now()->year, QuartersEnum::FOURTH_QUARTER);
-
         session([
             'data4' => [
                 'fourps' => $fourps,
@@ -283,7 +265,89 @@ class AdminDashboardController extends Controller
                 'aics' => $aics,
             ]
         ]);
-
         return view('admin.quarters.fourthquarter', ['data4' => session('data4')]);
+    }
+
+    public function getReportHistoryPage(Request $request)
+    {
+        $general_history = DB::table('reports')
+            ->select(
+                'reports.id',
+                DB::raw('DATE(reports.created_at) as report_date'),
+                DB::raw('TIME_FORMAT(reports.created_at, "%h:%i %p") as report_time_12hr'),
+                'programs.name'
+            )
+            ->join('programs', 'reports.program_id', '=', 'programs.id')
+            ->orderBy('reports.id', 'desc') // Order by created_at in descending order
+            ->get();
+
+        session(['admin_history' => $general_history]);
+        return view('admin.history');
+    }
+
+    public function getReportDetails($reportId)
+    {
+        $report = DB::table('reports')
+            ->select(
+                'provinces.name as province_name',
+                'municipalities.municipality as municipality_name',
+                'quarters.quarter',
+                'reports.male_count',
+                'reports.female_count',
+                'reports.total_budget_utilized'
+            )
+            ->join('provinces', 'provinces.id', '=', 'reports.province_id')
+            ->join('municipalities', 'municipalities.id', '=', 'reports.municipality_id')
+            ->join('quarters', 'quarters.id', '=', 'reports.quarter_id')
+            ->where('reports.id', $reportId)
+            ->first();
+
+        if (!$report) {
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+        return response()->json((array) $report);
+    }
+
+    public function quicksearch(Request $request)
+    {
+
+        $validate = $request->validate([
+            'program' => 'required',
+            'quarter' => 'required',
+            'province' => 'required',
+            'year' => 'required'
+        ]);
+
+        if ($validate) {
+            try {
+                $data = DB::table('reports')
+                    ->select(
+                        'municipalities.municipality as municipality_name',
+                        DB::raw('SUM(reports.male_count) as total_male_count'),
+                        DB::raw('SUM(reports.female_count) as total_female_count'),
+                        DB::raw('SUM(reports.total_physical_count) as total_physical_count'),
+                        DB::raw('SUM(reports.total_budget_utilized) as total_budget_utilized')
+                    )
+                    ->join('municipalities', 'reports.municipality_id', '=', 'municipalities.id')
+                    ->join('programs', 'reports.program_id', '=', 'programs.id')
+                    ->join('quarters', 'reports.quarter_id', '=', 'quarters.id')
+                    ->join('provinces', 'reports.province_id', '=', 'provinces.id')
+                    ->where([
+                        ['reports.province_id', '=', $validate['province']],
+                        ['reports.program_id', '=', $validate['program']],
+                        ['reports.quarter_id', '=', $validate['quarter']],
+                        ['reports.year', '=', $validate['year']],
+                    ])
+                    ->groupBy('municipalities.municipality')
+                    ->get();
+
+                    return response()->json($data);
+
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+        }
     }
 }

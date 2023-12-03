@@ -49,7 +49,7 @@
             </div>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
             </li>
@@ -79,7 +79,11 @@
                     </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
 
 
@@ -108,6 +112,12 @@
                 <a class="nav-link" href="/admin/target">
                     <i class="fas fa-fw fa-bullseye"></i>
                     <span>Set Target</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
             </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">

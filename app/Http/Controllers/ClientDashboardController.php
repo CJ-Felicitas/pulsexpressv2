@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Enums\UserTypeEnum;
 use DB;
 
 class ClientDashboardController extends Controller
@@ -122,7 +123,7 @@ class ClientDashboardController extends Controller
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
         $quarter_id = $current_active_quarter->id;
 
-            if ($validate) {
+        if ($validate) {
             try {
                 DB::beginTransaction();
 
@@ -149,4 +150,87 @@ class ClientDashboardController extends Controller
             }
         }
     }
+
+
+    public function getReportHistoryPage(Request $request)
+    {
+
+        $user = Auth::user();
+        $programID = null;
+        // user->user_type belongs to the usertype table
+        // in here we use switch case to assign the programID base on the id of the programs table. look for App/Enums/ProgramsEnum for reference.
+
+        switch ($user->user_type) {
+            case 5:
+                $programID = 1;
+                break;
+            case 6:
+                $programID = 4;
+                break;
+            case 7:
+                $programID = 2;
+                break;
+            case 8:
+                $programID = 7;
+                break;
+            case 9:
+                $programID = 6;
+                break;
+            case 10:
+                $programID = 5;
+                break;
+            case 11:
+                $programID = 3;
+                break;
+            case 12:
+                $programID = 8;
+                break;
+        }
+
+        $specific_history = DB::table('reports')
+        ->select(
+            'reports.id',
+            DB::raw('DATE(reports.created_at) as report_date'),
+            DB::raw('TIME_FORMAT(reports.created_at, "%h:%i %p") as report_time_12hr'),
+            'programs.name'
+        )
+        ->join('programs', 'reports.program_id', '=', 'programs.id')
+        ->where('reports.program_id', $programID)
+        ->orderBy('reports.created_at', 'desc') // Optional: Add this line for ordering
+        ->get();
+
+        // Return redirect to the appropriate dashboard route based on user_type
+        session(['client_history' => $specific_history]);
+        return view('client.history');
+
+
+
+    }
+
+    public function getReportDetails($reportId)
+    {
+        $report = DB::table('reports')
+            ->select(
+                'provinces.name as province_name',
+                'municipalities.municipality as municipality_name',
+                'quarters.quarter',
+                'reports.male_count',
+                'reports.female_count',
+                'reports.total_budget_utilized'
+            )
+            ->join('provinces', 'provinces.id', '=', 'reports.province_id')
+            ->join('municipalities', 'municipalities.id', '=', 'reports.municipality_id')
+            ->join('quarters', 'quarters.id', '=', 'reports.quarter_id')
+            ->where('reports.id', $reportId)
+            ->first();
+
+        if (!$report) {
+            // Handle the case where the report is not found
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+
+        return response()->json((array) $report);
+    }
+
+
 }

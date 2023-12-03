@@ -47,7 +47,7 @@
                 Overview
             </div>
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>General Overview</span></a>
@@ -56,7 +56,7 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-map-pin"></i>
@@ -77,6 +77,11 @@
                         <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -104,6 +109,12 @@
                     <span>Set Target</span></a>
             </li>
             <!-- Nav Item - Tables -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="/client/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-image"></i>

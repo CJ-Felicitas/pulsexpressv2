@@ -133,7 +133,11 @@ if ($fourthquarterstatus) {
                     </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
 
 
@@ -164,6 +168,11 @@ if ($fourthquarterstatus) {
                     <span>Set Target</span></a>
             </li>
             <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-image"></i>

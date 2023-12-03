@@ -110,7 +110,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/client/history">
+                <a class="nav-link" href="/admin/history">
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
             </li>

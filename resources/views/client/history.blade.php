@@ -45,12 +45,12 @@
                 Overview
             </div>
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-file-import"></i>
                     <span>Submit Report</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/client/history">
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
@@ -151,6 +151,7 @@
                             </div>
                         </div>
                         </div>
+                        <h4 class="text-center">History</h4>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-4">

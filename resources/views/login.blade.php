@@ -36,7 +36,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="https://4.img-dpreview.com/files/p/E~C667x0S5333x4000T1200x900~articles/3925134721/0266554465.jpeg" alt="" width="100%">
+                                <img src="storage/images/dswd-logo.png" alt="" width="100%">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">

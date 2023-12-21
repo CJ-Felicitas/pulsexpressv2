@@ -249,6 +249,77 @@
                             </div>
                             {{--  --}}
                             <div>
+                                {{-- <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Quarterly Summary</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <label for=""><b>Pantawid Pamilyang Pilipino Program</b></label>
+                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Status</th>
+                                                        <td>Variance</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $target_data = session('target_data');
+                                                    @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['fourps'] as $row)
+                                                            <tr>
+                                                                <td>{{ $row->quarter_id }}</td>
+                                                                <td>{{ $row->physical_target }} / Output</td>
+                                                                <td>{{ $row->budget_target }} / Output</td>
+                                                                <td>  <span class="badge badge-success">
+                                                                    Active
+                                                                </span></td>
+                                                                <td><button class="btn btn-primary btn-block">View Variance</button></td>
+
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
+
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            <label for=""><b>Sustainable Livelihood Program</b></label>
+                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Quarter</th>
+                                                        <th>Physical Target</th>
+                                                        <th>Budget Target</th>
+                                                        <th>Last Updated</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $target_data = session('target_data');
+                                                    @endphp
+                                                    @if ($target_data)
+                                                        @foreach ($target_data['fourps'] as $row)
+                                                            <tr>
+                                                                <td>{{ $row->quarter_id }}</td>
+                                                                <td>{{ $row->physical_target }}</td>
+                                                                <td>{{ $row->budget_target }}</td>
+                                                                <td>{{ $row->updated_at }}</td>
+
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino

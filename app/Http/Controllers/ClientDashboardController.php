@@ -84,6 +84,8 @@ class ClientDashboardController extends Controller
         $user = Auth::user();
         $user_type = null;
 
+
+
         // User type map
         $userTypeMap = [
             5 => 1,
@@ -97,6 +99,11 @@ class ClientDashboardController extends Controller
         ];
 
         $user_type = $userTypeMap[$user->user_type] ?? null;
+
+        // $specificQuarterId = 1; // Replace with the specific quarter ID
+        // $specificProgramId = 1; // Replace with the specific program ID
+
+
 
         $validate = $request->validate([
             'province_id' => 'required',
@@ -115,6 +122,13 @@ class ClientDashboardController extends Controller
         $currentDate = Carbon::now('Asia/Manila');
         $lastDayOfMonth = $currentDate->copy()->endOfMonth();
         $submissionWindowStart = $lastDayOfMonth->copy()->subDays(5)->startOfDay();
+
+        // $previous_quarter = DB::table('quarters')
+        //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
+        //     ->first();
+
+
+
 
         if ($validate) {
             try {
@@ -357,5 +371,82 @@ class ClientDashboardController extends Controller
                 ], 500);
             }
         }
+    }
+    public function submitvariance(Request $request)
+    {
+        $validated = $request->validate([
+            'reason_of_variance' => 'required',
+            'steering_measures' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+        $programID = null;
+        // user->user_type belongs to the usertype table
+        // in here we use switch case to assign the programID base on the id of the programs table. look for App/Enums/ProgramsEnum for reference.
+
+        switch ($user->user_type) {
+            case 5:
+                $programID = 1;
+                break;
+            case 6:
+                $programID = 4;
+                break;
+            case 7:
+                $programID = 2;
+                break;
+            case 8:
+                $programID = 7;
+                break;
+            case 9:
+                $programID = 6;
+                break;
+            case 10:
+                $programID = 5;
+                break;
+            case 11:
+                $programID = 3;
+                break;
+            case 12:
+                $programID = 8;
+                break;
+        }
+
+        $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
+
+        $previous_quarter = DB::table('quarters')
+            ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
+            ->first();
+
+        if ($validated) {
+            try {
+                DB::beginTransaction();
+                DB::table('variance')->insert([
+                    'program_id' => $programID,
+                    'quarter_id' => $previous_quarter->id,
+                    'reason_of_variance' => $validated['reason_of_variance'],
+                    'steering_measures' => $validated['steering_measures'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+
+                // insert to variance_submission_check table
+                DB::table('variance_submission_check')->insert([
+                    'program_id' => $programID,
+                    'quarter_id' => $previous_quarter->id,
+                    'submitted' => 1,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+
+                DB::commit();
+                return redirect('/client/dashboard')->with('variance_success', 'Variance Submitted');
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage(),
+                ]);
+            }
+        }
+
     }
 }

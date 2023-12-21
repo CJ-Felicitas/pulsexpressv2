@@ -104,11 +104,6 @@
                     <span>Account Settings</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/activequarters">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Quarter Settings</span></a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/admin/target">
                     <i class="fas fa-fw fa-bullseye"></i>
                     <span>Set Target</span></a>
@@ -149,33 +144,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @php
-                                        $user_data = session('user_data');
-                                    @endphp
-                                    @if ($user_data)
-                                        {{ $user_data->username }}
-                                    @endif
-                                </span>
-                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
-
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
+                        <button type="button" data-target="#logoutModal" data-toggle="modal"
+                            class="btn btn-danger">Logout</button>
                     </ul>
 
                 </nav>
@@ -184,11 +154,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Account Settings</h1>
-                    </div> --}}
-                    {{--  --}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-2">
@@ -199,26 +164,107 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-md-3">
-                                                    <img width="100%"
-                                                        src="{{ asset('storage/images/2023-12-19_16-38-47_25_felicitas_camera.jpg') }}"
-                                                        class="rounded mx-auto d-block">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>First Name: <b>Cedrick James</b></div>
-                                                    <div>Middle Name: <b>Bation</b></div>
-                                                    <div>Last Name: <b>Felicitas</b></div>
-                                                    <div>Username: <b>admin</b></div>
-                                                    <div>Account Type: <b>Administrator</b></div>
-                                                    <div>Email: <b>test@email.com</b></div>
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-end mt-3">
-                                                <div class="col-md-3 text-right">
-                                                    <button class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#editpassword">Edit Password</button>
-                                                    <button class="btn btn-success" data-toggle="modal"
-                                                        data-target="#editaccount">Edit</button>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <form action="" method="post">
+                                                                <label for="">First Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    value="Cedrick James">
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="">Middle Name</label>
+                                                            <input type="text" class="form-control"
+                                                                value="Bation">
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="">Last Name</label>
+                                                            <input type="text" class="form-control"
+                                                                value="Felicitas">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-4">
+                                                            <label for="">Email</label>
+                                                            <input type="text" class="form-control"
+                                                                value="cj15felicitas@gmail.com">
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="">Username</label>
+                                                            <input type="text" class="form-control"
+                                                                value="admin">
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="">Account Type</label>
+                                                            <input type="text" disabled class="form-control"
+                                                                value="Administrator">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-end mt-3">
+                                                        <div class="col-md-3 text-right">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="modal" data-target="#editpassword">Edit
+                                                                Password</button>
+                                                            <button type="button" class="btn btn-success"
+                                                                data-toggle="modal"
+                                                                data-target="#editaccount">Update</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="editaccount" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Are
+                                                                        you sure you want to save the changes?</h5>
+                                                                    <button class="close" type="button"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <label class=""
+                                                                                for="">Passsword</label>
+                                                                            <input type="password" name="firstname"
+                                                                                class="form-control"
+                                                                                value="Cedrick James">
+                                                                            <label class="mt-2"
+                                                                                for="">Confirm
+                                                                                Passsword</label>
+                                                                            <input type="password" name="middlename"
+                                                                                class="form-control"
+                                                                                value="Cedrick James">
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-secondary" type="button"
+                                                                        data-dismiss="modal">Cancel</button>
+
+                                                                    <input type="text" hidden name="fourthquarter"
+                                                                        value="4" id="">
+                                                                    <button class="btn btn-warning"
+                                                                        type="submit">Update</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,27 +273,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="row">
-                        <div class="col-md-12">
-                            <div class="card shadow mb-4 mt-2">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Create Accounts</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
 
 
                 </div>
@@ -325,53 +350,7 @@
 
 
             {{-- start of the edit account but not password --}}
-            <div class="modal fade" id="editaccount" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Account</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
 
-                        <div class="modal-body">
-                            <form action="/admin/editaccount" method="post">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label class="" for="">First Name</label>
-                                        <input type="text" name="firstname" class="form-control"
-                                            value="Cedrick James">
-
-                                        <label class="mt-2" for="">Middle Name</label>
-                                        <input type="text" name="middlename" class="form-control"
-                                            value="Cedrick James">
-
-                                        <label class="mt-2" for="">Felicitas</label>
-                                        <input type="text" name="username" class="form-control" value="admin">
-
-                                        <label class="mt-2" for="">Email</label>
-                                        <input type="text" name="email" class="form-control"
-                                            value="test@email.com">
-
-                                        <label class="mt-2" for="">Confirm Changes</label>
-                                        <input type="text" name="confirm" class="form-control"
-                                            placeholder="Enter Password to Confirm">
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            @csrf
-                            <input type="text" hidden name="fourthquarter" value="4" id="">
-                            <button class="btn btn-warning" type="submit">Update</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             {{-- end of the edit account but not password --}}
 
 

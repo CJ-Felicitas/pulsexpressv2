@@ -34,7 +34,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::middleware(['loggedin'])->group(function () {
 
     // routes for the client side
-    Route::prefix('client')->group(function () {
+    Route::prefix('client')->middleware('clientroutes')->group(function () {
         Route::get('/accountsettings', function () {
             return view('client.accountsettings');
         });
@@ -45,7 +45,7 @@ Route::middleware(['loggedin'])->group(function () {
     });
 
     // routes for the admin side
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware('adminroutes')->group(function () {
         // individual routes of the admin
         Route::post('/applytarget', [TargetController::class, 'updateTarget']);
         Route::get('/history', [AdminDashboardController::class, 'getReportHistoryPage']);

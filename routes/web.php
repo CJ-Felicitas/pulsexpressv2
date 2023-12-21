@@ -54,6 +54,13 @@ Route::middleware(['loggedin'])->group(function () {
         Route::get('/activequarters', function () {
             return view('admin.activequarters');
         });
+
+        Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);
+
+        Route::get('/accountsettings', function () {
+            return view('admin.accountsettings');
+        });
+
         Route::get('/quicksearch', function () {
             return view('admin.quicksearch');
         });

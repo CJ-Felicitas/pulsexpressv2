@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use App\Enums\ProvinceEnum;
 use App\Enums\QuartersEnum;
 use App\Enums\SemestersEnum;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends Controller
 {
@@ -302,8 +304,6 @@ class AdminDashboardController extends Controller
             ->where('reports.id', $reportId)
             ->first();
 
-
-
         if (!$report) {
             return response()->json(['error' => 'Report not found'], 404);
         }
@@ -343,7 +343,7 @@ class AdminDashboardController extends Controller
                     ->groupBy('municipalities.municipality')
                     ->get();
 
-                    return response()->json($data);
+                return response()->json($data);
 
             } catch (\Throwable $th) {
                 return response()->json([
@@ -351,5 +351,48 @@ class AdminDashboardController extends Controller
                 ], 500);
             }
         }
+    }
+
+    public function editpassword(Request $request)
+    {
+        $validate = $request->validate([
+            'currentpassword' => 'required',
+            'newpassword' => 'required',
+            'confirmpassword' => 'required',
+        ]);
+        // get the id of the current authenticated user
+        $user = Auth::user();
+        $userId = $user->id;
+        // get current user
+        $current_user = DB::table('users')
+            ->where('id', $userId)
+            ->first();
+        $user_pass = $current_user->password;
+        if ($validate) {
+            try {
+                if (Hash::check($validate['currentpassword'], $user_pass)) {
+                    DB::beginTransaction();
+                    DB::table('users')
+                        ->where('id', $userId)
+                        ->update([
+                            'password' => Hash::make($validate['newpassword']),
+                        ]);
+                    DB::commit();
+                    return view('admin.accountsettings');
+                }
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+        }
+    }
+    public function editaccount(Request $request)
+    {
+            $validate = $request->validate([
+                'name' => 'required',
+                'username' => 'required',
+            ]);
+
     }
 }

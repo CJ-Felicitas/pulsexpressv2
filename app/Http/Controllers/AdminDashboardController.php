@@ -302,6 +302,8 @@ class AdminDashboardController extends Controller
             ->where('reports.id', $reportId)
             ->first();
 
+
+
         if (!$report) {
             return response()->json(['error' => 'Report not found'], 404);
         }

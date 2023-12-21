@@ -82,6 +82,8 @@ class ClientDashboardController extends Controller
     {
         $user = Auth::user();
         $user_type = null;
+
+        // user type map
         switch ($user->user_type) {
             case 5:
                 $user_type = 1;
@@ -117,32 +119,60 @@ class ClientDashboardController extends Controller
             'female_count' => 'required',
             'male_count' => 'required',
             'total_count' => 'required',
-            'budget_utilized' => 'required'
+            'budget_utilized' => 'required',
+            'upload_inputfile' => 'required|array', // Validate if files are present
+            'upload_inputfile.*' => 'image|mimes:jpeg,png,jpg|max:2048', // Validate image files
         ]);
 
+        // change this? para lang sa date of submission na allowed na kadtong gi ingon ni sir ted
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
         $quarter_id = $current_active_quarter->id;
+        // =================
+        $currentDate = Carbon::now('Asia/Manila');
+        $lastDayOfMonth = $currentDate->copy()->endOfMonth();
+        $submissionWindowStart = $lastDayOfMonth->copy()->subDays(5)->startOfDay();
 
         if ($validate) {
             try {
-                DB::beginTransaction();
+                if ($currentDate->isLastOfMonth() || ($currentDate->greaterThanOrEqualTo($submissionWindowStart) && $currentDate->lessThanOrEqualTo($lastDayOfMonth))) {
+                    DB::beginTransaction();
+                    $reportId = DB::table('reports')->insertGetId([
+                        'program_id' => $user_type,
+                        'province_id' => $validate['province_id'],
+                        'municipality_id' => $validate['municipality_id'],
+                        'quarter_id' => $quarter_id,
+                        'female_count' => $validate['female_count'],
+                        'male_count' => $validate['male_count'],
+                        'total_physical_count' => $validate['total_count'],
+                        'total_budget_utilized' => $validate['budget_utilized'],
+                        'year' => Carbon::now()->year,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+                    // handle image upload
+                    if ($request->hasFile('upload_inputfile')) {
+                        $files = $request->file('upload_inputfile');
 
-                DB::table('reports')->insert([
-                    'program_id' => $user_type,
-                    'province_id' => $validate['province_id'],
-                    'municipality_id' => $validate['municipality_id'],
-                    'quarter_id' => $quarter_id,
-                    'female_count' => $validate['female_count'],
-                    'male_count' => $validate['male_count'],
-                    'total_physical_count' => $validate['total_count'],
-                    'total_budget_utilized' => $validate['budget_utilized'],
-                    'year' => Carbon::now()->year,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ]);
-                DB::commit();
-                return redirect()->back()->with('report_success', 'Report Submitted');
-                // return $quarter_id;
+                        foreach ($files as $file) {
+                            $timestamp = now()->format('Y-m-d_H-i-s'); // Get timestamp in a compatible format
+                            $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
+                            $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
+                            $file->storeAs('public/images', $fileName);
+                            $file->storeAs('images', $fileName); // Store in the desired folder
+                            DB::table('image_reports')->insert([
+                                'report_id' => $reportId,
+                                'image_path' => 'images/' . $fileName, // Save the relative path to the image
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ]);
+                        }
+                    }
+                    DB::commit();
+                    return redirect()->back()->with('report_success', 'Report Submitted');
+                } else {
+                    return redirect()->back()->with('report_error', 'Unable to submit the report');
+                }
+
             } catch (\Throwable $th) {
                 return response()->json([
                     'message' => $th->getMessage(),
@@ -188,16 +218,16 @@ class ClientDashboardController extends Controller
         }
 
         $specific_history = DB::table('reports')
-        ->select(
-            'reports.id',
-            DB::raw('DATE(reports.created_at) as report_date'),
-            DB::raw('TIME_FORMAT(reports.created_at, "%h:%i %p") as report_time_12hr'),
-            'programs.name'
-        )
-        ->join('programs', 'reports.program_id', '=', 'programs.id')
-        ->where('reports.program_id', $programID)
-        ->orderBy('reports.created_at', 'desc') // Optional: Add this line for ordering
-        ->get();
+            ->select(
+                'reports.id',
+                DB::raw('DATE(reports.created_at) as report_date'),
+                DB::raw('TIME_FORMAT(reports.created_at, "%h:%i %p") as report_time_12hr'),
+                'programs.name'
+            )
+            ->join('programs', 'reports.program_id', '=', 'programs.id')
+            ->where('reports.program_id', $programID)
+            ->orderBy('reports.created_at', 'desc') // Optional: Add this line for ordering
+            ->get();
 
         // Return redirect to the appropriate dashboard route based on user_type
         session(['client_history' => $specific_history]);

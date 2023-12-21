@@ -11,6 +11,7 @@ use App\Enums\QuartersEnum;
 use App\Enums\SemestersEnum;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\UserTypeEnum;
 
 class AdminDashboardController extends Controller
 {
@@ -378,7 +379,8 @@ class AdminDashboardController extends Controller
                             'password' => Hash::make($validate['newpassword']),
                         ]);
                     DB::commit();
-                    return view('admin.accountsettings');
+                    session()->flash('message', 'Password successfully changed!');
+                    return view('/admin/accountsettings');
                 }
             } catch (\Throwable $th) {
                 return response()->json([
@@ -389,10 +391,80 @@ class AdminDashboardController extends Controller
     }
     public function editaccount(Request $request)
     {
-            $validate = $request->validate([
-                'name' => 'required',
-                'username' => 'required',
-            ]);
+        $validate = $request->validate([
+            'password' => 'required',
+            'confirm_password' => 'required',
+        ]);
 
+        $middle_name = "";
+
+        if ($request->middle_name == null) {
+            $middle_name = "";
+        } else {
+            $middle_name = $request->middle_name;
+        }
+        // get the id of the current authenticated user
+        $user = Auth::user();
+        $userId = $user->id;
+        // get current user
+        $current_user = DB::table('users')
+            ->where('id', $userId)
+            ->first();
+
+
+        if ($validate['password'] == Hash::check($validate['password'], $current_user->password) && $validate['confirm_password'] == Hash::check($validate['confirm_password'], $current_user->password)) {
+            try {
+                DB::beginTransaction();
+                DB::table('users')
+                    ->where('id', $userId)
+                    ->update([
+                        'first_name' => $request->first_name,
+                        'middle_name' => $middle_name,
+                        'last_name' => $request->last_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                    ]);
+                DB::commit();
+                session()->flash('account_message', 'Account successfully updated!');
+                return redirect('/admin/accountsettings');
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+        }
+        else {
+            session()->flash('password_unmatched', 'Password does not match!');
+            return view('admin.accountsettings');}
+    }
+
+
+    public function getAccountSettingsPage()
+    {
+        $user = Auth::user();
+        $accountTypes = [
+            UserTypeEnum::ADMIN => 'Administrator',
+            UserTypeEnum::FOURPS => 'Pantawid Pamilyang Pilipino Program',
+            UserTypeEnum::SLP => 'Sustainable Livelihood Program',
+            UserTypeEnum::KALAHI => 'Kapit-Bisig Laban sa Kahirapan',
+            UserTypeEnum::SOCIAL_PENSION_PROGRAM => 'Social Pension Program',
+            UserTypeEnum::FEEDING_PROGRAM => 'Supplementary Feeding Program',
+            UserTypeEnum::DRRM => 'Disaster Risk Reduction Management',
+            UserTypeEnum::CENTENARRIAN => 'Centenarrian',
+            UserTypeEnum::AICS => 'Assistance to Individual in Crisis Situation',
+        ];
+        $account_type = $accountTypes[$user->user_type] ?? '';
+
+        session([
+            'first_name' => $user->first_name,
+            'middle_name' => $user->middle_name,
+            'last_name' => $user->last_name,
+            'username' => $user->username,
+            'email' => $user->email,
+            'name' => $user->name,
+            'account_type' => $account_type,
+        ]);
+
+        return view('admin.accountsettings');
     }
 }

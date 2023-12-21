@@ -37,7 +37,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
 
-                <div class="sidebar-brand-text mx-3">ADMIN</div>
+                <div class="sidebar-brand-text mx-3">CLIENT</div>
             </a>
 
             <!-- Divider -->
@@ -108,6 +108,22 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            @if (session('client_account_message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('client_account_message') }}
+                            </div>
+                        @endif
+                            @if (session('message'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+
+                            @if (session('client_password_unmatched'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('client_password_unmatched') }}
+                            </div>
+                        @endif
                             <div class="card shadow mb-4 mt-2">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Account Settings</h6>
@@ -119,42 +135,44 @@
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <form action="" method="post">
+                                                            <form action="/client/editaccount" method="post">
                                                                 <label for="">First Name</label>
                                                                 <input type="text" class="form-control"
-                                                                    value="Cedrick James">
+                                                                    name="first_name"
+                                                                    value="{{ session('client_first_name') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Middle Name</label>
                                                             <input type="text" class="form-control"
-                                                                value="Bation">
+                                                                name="middle_name"
+                                                                value="{{ session('client_middle_name') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Last Name</label>
-                                                            <input type="text" class="form-control"
-                                                                value="Felicitas">
+                                                            <input type="text" class="form-control" name="last_name"
+                                                                value="{{ session('client_last_name') }}">
                                                         </div>
                                                     </div>
 
                                                     <div class="row mt-3">
                                                         <div class="col-md-4">
                                                             <label for="">Email</label>
-                                                            <input type="text" class="form-control"
-                                                                value="cj15felicitas@gmail.com">
+                                                            <input type="text" class="form-control" name="email"
+                                                                value="{{ session('client_email') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Username</label>
-                                                            <input type="text" class="form-control"
-                                                                value="admin">
+                                                            <input type="text" class="form-control" name="username"
+                                                                value="{{ session('client_username') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Account Type</label>
                                                             <input type="text" disabled class="form-control"
-                                                                value="Administrator">
+                                                                value="{{ session('client_account_type') }}">
                                                         </div>
                                                     </div>
 
@@ -166,7 +184,7 @@
                                                             <button type="button" class="btn btn-success"
                                                                 data-toggle="modal"
                                                                 data-target="#editaccount">Update</button>
-                                                            </form>
+
                                                         </div>
                                                     </div>
 
@@ -189,17 +207,14 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <label class=""
-                                                                                for="">Passsword</label>
-                                                                            <input type="password" name="firstname"
-                                                                                class="form-control"
-                                                                                value="Cedrick James">
+                                                                                for="">Password</label>
+                                                                            <input type="password" name="password"
+                                                                                class="form-control" value="">
                                                                             <label class="mt-2"
-                                                                                for="">Confirm
-                                                                                Passsword</label>
-                                                                            <input type="password" name="middlename"
-                                                                                class="form-control"
-                                                                                value="Cedrick James">
-                                                                            </form>
+                                                                                for="">Confirm Password</label>
+                                                                            <input type="password"
+                                                                                name="confirm_password"
+                                                                                class="form-control" value="">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -208,11 +223,11 @@
                                                                     <button class="btn btn-secondary" type="button"
                                                                         data-dismiss="modal">Cancel</button>
 
-                                                                    <input type="text" hidden name="fourthquarter"
-                                                                        value="4" id="">
+
                                                                     <button class="btn btn-warning"
                                                                         type="submit">Update</button>
-
+                                                                        @csrf
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -276,7 +291,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/admin/editpassword" method="post">
+                            <form action="/client/editpassword" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <input type="text" name="currentpassword" class="form-control mt-2"
@@ -300,10 +315,6 @@
             </div>
             {{-- end of the edit password modal --}}
 
-
-            {{-- start of the edit account but not password --}}
-
-            {{-- end of the edit account but not password --}}
 
 
 

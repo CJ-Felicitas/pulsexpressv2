@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Enums\UserTypeEnum;
 use DB;
-
+use Illuminate\Support\Facades\Hash;
 class ClientDashboardController extends Controller
 {
     public function returnView(Request $request)
@@ -262,5 +262,119 @@ class ClientDashboardController extends Controller
         return response()->json((array) $report);
     }
 
+    public function getAccountSettingsPage()
+    {
+        $user = Auth::user();
+        $accountTypes = [
+            UserTypeEnum::ADMIN => 'Administrator',
+            UserTypeEnum::FOURPS => 'Pantawid Pamilyang Pilipino Program',
+            UserTypeEnum::SLP => 'Sustainable Livelihood Program',
+            UserTypeEnum::KALAHI => 'Kapit-Bisig Laban sa Kahirapan',
+            UserTypeEnum::SOCIAL_PENSION_PROGRAM => 'Social Pension Program',
+            UserTypeEnum::FEEDING_PROGRAM => 'Supplementary Feeding Program',
+            UserTypeEnum::DRRM => 'Disaster Risk Reduction Management',
+            UserTypeEnum::CENTENARRIAN => 'Centenarrian',
+            UserTypeEnum::AICS => 'Assistance to Individual in Crisis Situation',
+        ];
+        $account_type = $accountTypes[$user->user_type] ?? '';
 
+        session([
+            'client_first_name' => $user->first_name,
+            'client_middle_name' => $user->middle_name,
+            'client_last_name' => $user->last_name,
+            'client_username' => $user->username,
+            'client_email' => $user->email,
+            'client_name' => $user->name,
+            'client_account_type' => $account_type,
+        ]);
+
+        return view('client.accountsettings');
+    }
+
+
+    public function editaccount(Request $request)
+    {
+        $validate = $request->validate([
+            'password' => 'required',
+            'confirm_password' => 'required',
+        ]);
+
+        $middle_name = "";
+
+        if ($request->middle_name == null) {
+            $middle_name = "";
+        } else {
+            $middle_name = $request->middle_name;
+        }
+        // get the id of the current authenticated user
+        $user = Auth::user();
+        $userId = $user->id;
+        // get current user
+        $current_user = DB::table('users')
+            ->where('id', $userId)
+            ->first();
+
+
+        if ($validate['password'] == Hash::check($validate['password'], $current_user->password) && $validate['confirm_password'] == Hash::check($validate['confirm_password'], $current_user->password)) {
+            try {
+                DB::beginTransaction();
+                DB::table('users')
+                    ->where('id', $userId)
+                    ->update([
+                        'first_name' => $request->first_name,
+                        'middle_name' => $middle_name,
+                        'last_name' => $request->last_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                    ]);
+                DB::commit();
+                session()->flash('client_account_message', 'Account successfully updated!');
+                return redirect('/client/accountsettings');
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+        }
+        else {
+            session()->flash('client_password_unmatched', 'Password does not match!');
+            return view('client.accountsettings');}
+    }
+
+
+    public function editpassword(Request $request)
+    {
+        $validate = $request->validate([
+            'currentpassword' => 'required',
+            'newpassword' => 'required',
+            'confirmpassword' => 'required',
+        ]);
+        // get the id of the current authenticated user
+        $user = Auth::user();
+        $userId = $user->id;
+        // get current user
+        $current_user = DB::table('users')
+            ->where('id', $userId)
+            ->first();
+        $user_pass = $current_user->password;
+        if ($validate) {
+            try {
+                if (Hash::check($validate['currentpassword'], $user_pass)) {
+                    DB::beginTransaction();
+                    DB::table('users')
+                        ->where('id', $userId)
+                        ->update([
+                            'password' => Hash::make($validate['newpassword']),
+                        ]);
+                    DB::commit();
+                    session()->flash('message', 'Password successfully changed!');
+                    return redirect('/client/accountsettings');
+                }
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+        }
+    }
 }

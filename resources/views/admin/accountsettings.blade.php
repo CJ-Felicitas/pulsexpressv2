@@ -114,11 +114,6 @@
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span>Cover Page Settings</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -156,6 +151,24 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            @if (session('message'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+
+                            @if (session('account_message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('account_message') }}
+                            </div>
+                        @endif
+
+                        @if (session('password_unmatched'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('password_unmatched') }}
+                        </div>
+                    @endif
+
                             <div class="card shadow mb-4 mt-2">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Account Settings</h6>
@@ -167,42 +180,44 @@
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <form action="" method="post">
+                                                            <form action="/admin/editaccount" method="post">
                                                                 <label for="">First Name</label>
                                                                 <input type="text" class="form-control"
-                                                                    value="Cedrick James">
+                                                                    name="first_name"
+                                                                    value="{{ session('first_name') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Middle Name</label>
                                                             <input type="text" class="form-control"
-                                                                value="Bation">
+                                                                name="middle_name"
+                                                                value="{{ session('middle_name') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Last Name</label>
                                                             <input type="text" class="form-control"
-                                                                value="Felicitas">
+                                                                name="last_name" value="{{ session('last_name') }}">
                                                         </div>
                                                     </div>
 
                                                     <div class="row mt-3">
                                                         <div class="col-md-4">
                                                             <label for="">Email</label>
-                                                            <input type="text" class="form-control"
-                                                                value="cj15felicitas@gmail.com">
+                                                            <input type="text" class="form-control" name="email"
+                                                                value="{{ session('email') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Username</label>
                                                             <input type="text" class="form-control"
-                                                                value="admin">
+                                                                name="username" value="{{ session('username') }}">
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <label for="">Account Type</label>
                                                             <input type="text" disabled class="form-control"
-                                                                value="Administrator">
+                                                                value="{{ session('account_type') }}">
                                                         </div>
                                                     </div>
 
@@ -214,55 +229,52 @@
                                                             <button type="button" class="btn btn-success"
                                                                 data-toggle="modal"
                                                                 data-target="#editaccount">Update</button>
-                                                            </form>
                                                         </div>
                                                     </div>
 
-                                                    <div class="modal fade" id="editaccount" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Are
-                                                                        you sure you want to save the changes?</h5>
-                                                                    <button class="close" type="button"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">×</span>
-                                                                    </button>
-                                                                </div>
+                                                </div>
+                                            </div>
 
-                                                                <div class="modal-body">
+                                            <div class="modal fade" id="editaccount" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are
+                                                                you sure you want to save the changes?</h5>
+                                                            <button class="close" type="button"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
 
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <label class=""
-                                                                                for="">Passsword</label>
-                                                                            <input type="password" name="firstname"
-                                                                                class="form-control"
-                                                                                value="Cedrick James">
-                                                                            <label class="mt-2"
-                                                                                for="">Confirm
-                                                                                Passsword</label>
-                                                                            <input type="password" name="middlename"
-                                                                                class="form-control"
-                                                                                value="Cedrick James">
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="modal-body">
 
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-secondary" type="button"
-                                                                        data-dismiss="modal">Cancel</button>
-
-                                                                    <input type="text" hidden name="fourthquarter"
-                                                                        value="4" id="">
-                                                                    <button class="btn btn-warning"
-                                                                        type="submit">Update</button>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label class=""
+                                                                        for="">Password</label>
+                                                                    <input type="password" name="password"
+                                                                        class="form-control" value="">
+                                                                    <label class="mt-2" for="">Confirm
+                                                                        Passsword</label>
+                                                                    <input type="password" name="confirm_password"
+                                                                        class="form-control" value="">
 
                                                                 </div>
                                                             </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Cancel</button>
+
+                                                            <input type="text" hidden name="fourthquarter"
+                                                                value="4" id="">
+                                                            <button class="btn btn-warning"
+                                                                type="submit">Update</button>
+                                                            @csrf
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,110 +285,112 @@
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-                <!-- End of Content Wrapper -->
-
-            </div>
-            <!-- End of Page Wrapper -->
-
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="btn btn-danger" type="submit">Logout</button>
-                            </form>
-                            {{-- <a class="btn btn-primary" href="/logout">Logout</a> --}}
-                        </div>
-                    </div>
                 </div>
             </div>
 
 
-            {{-- set password modal --}}
-            <div class="modal fade" id="editpassword" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Password</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/admin/editpassword" method="post">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="text" name="currentpassword" class="form-control mt-2"
-                                            placeholder="Current Password">
-                                        <input type="text" name="newpassword" class="form-control mt-2"
-                                            placeholder="New Password">
-                                        <input type="text" name="confirmpassword" class="form-control mt-2"
-                                            placeholder="Confirm New Password">
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            @csrf
-                            <input type="text" hidden name="fourthquarter" value="4" id="">
-                            <button class="btn btn-warning" type="submit">Update</button>
-                            </form>
-                        </div>
-                    </div>
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="btn btn-danger" type="submit">Logout</button>
+                    </form>
+                    {{-- <a class="btn btn-primary" href="/logout">Logout</a> --}}
                 </div>
             </div>
-            {{-- end of the edit password modal --}}
+        </div>
+    </div>
 
 
-            {{-- start of the edit account but not password --}}
+    {{-- set password modal --}}
+    <div class="modal fade" id="editpassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Password</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/editpassword" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="currentpassword" class="form-control mt-2"
+                                    placeholder="Current Password">
+                                <input type="text" name="newpassword" class="form-control mt-2"
+                                    placeholder="New Password">
+                                <input type="text" name="confirmpassword" class="form-control mt-2"
+                                    placeholder="Confirm New Password">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    @csrf
+                    <input type="text" hidden name="fourthquarter" value="4" id="">
+                    <button class="btn btn-warning" type="submit">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of the edit password modal --}}
 
-            {{-- end of the edit account but not password --}}
+
+    {{-- start of the edit account but not password --}}
+
+    {{-- end of the edit account but not password --}}
 
 
 
 
-            <!-- Bootstrap core JavaScript -->
-            <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-            <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-            <!-- Core plugin JavaScript -->
-            <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Core plugin JavaScript -->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-            <!-- Custom scripts for all pages -->
-            <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-            <!-- Page level plugins -->
-            <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+    <!-- Page level plugins -->
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-            <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
 
-            <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-            <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-            <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
 
 </body>

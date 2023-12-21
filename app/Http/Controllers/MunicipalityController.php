@@ -7,7 +7,7 @@ use DB;
 
 class MunicipalityController extends Controller
 {
-    public function getMunicipalities($provinceId)
+        public function getMunicipalities($provinceId)
     {
         $municipalities = DB::table('municipalities')
             ->where('province_id', $provinceId)

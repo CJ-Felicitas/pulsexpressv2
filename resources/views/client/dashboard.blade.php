@@ -113,7 +113,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
 
-                <div class="sidebar-brand-text mx-3">ADMIN</div>
+                <div class="sidebar-brand-text mx-3">CLIENT</div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-2">
@@ -189,7 +189,7 @@
 
                             @if (session('report_error'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    Unable to submit the report at this time.
+                                    Submission of report is not allowed for today.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -303,13 +303,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Footer -->
 
         </div>

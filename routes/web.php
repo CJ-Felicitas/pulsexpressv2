@@ -35,9 +35,9 @@ Route::middleware(['loggedin'])->group(function () {
 
     // routes for the client side
     Route::prefix('client')->middleware('clientroutes')->group(function () {
-        Route::get('/accountsettings', function () {
-            return view('client.accountsettings');
-        });
+        Route::post('/editaccount', [ClientDashboardController::class, 'editaccount']);
+        Route::post('/editpassword', [ClientDashboardController::class, 'editpassword']);
+        Route::get('/accountsettings', [ClientDashboardController::class, 'getAccountSettingsPage']);
         Route::get('/dashboard', [ClientDashboardController::class, 'returnView']);
         Route::post('/submitreport', [ClientDashboardController::class, 'submitReport']);
         Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);
@@ -59,10 +59,11 @@ Route::middleware(['loggedin'])->group(function () {
         });
 
         Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);
-
-        Route::get('/accountsettings', function () {
-            return view('admin.accountsettings');
-        });
+        Route::post('/editaccount', [AdminDashboardController::class, 'editaccount']);
+        Route::get('/accountsettings', [AdminDashboardController::class, 'getAccountSettingsPage']);
+        // Route::get('/accountsettings', function () {
+        //     return view('admin.accountsettings');
+        // });
 
         Route::get('/quicksearch', function () {
             return view('admin.quicksearch');

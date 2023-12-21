@@ -281,7 +281,7 @@ class AdminDashboardController extends Controller
                 'programs.name'
             )
             ->join('programs', 'reports.program_id', '=', 'programs.id')
-            ->orderBy('reports.id', 'desc') // Order by created_at in descending order
+
             ->get();
 
         session(['admin_history' => $general_history]);
@@ -305,10 +305,11 @@ class AdminDashboardController extends Controller
             ->where('reports.id', $reportId)
             ->first();
 
-        if (!$report) {
-            return response()->json(['error' => 'Report not found'], 404);
-        }
-        return response()->json((array) $report);
+            $images = DB::table('image_reports')
+            ->where('report_id', $reportId)
+            ->get(['image_path']);
+
+        return response()->json(['report' => $report, 'images' => $images]);
     }
 
     public function quicksearch(Request $request)

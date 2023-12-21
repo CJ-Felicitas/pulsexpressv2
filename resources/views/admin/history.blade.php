@@ -64,7 +64,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao
+                            Occidental</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
 
@@ -154,7 +155,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                        <div class="modal fade bd-example-modal-lg" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade bd-example-modal-lg" id="reportModal" tabindex="-1" role="dialog"
+                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -164,8 +166,7 @@
                                     </button>
                                 </div>
                                 <div class="table-responsive px-2 mt-3">
-                                    <table class="table table-bordered" width="100%"
-                                        cellspacing="0">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Province</th>
@@ -183,7 +184,7 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -206,17 +207,19 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('admin_history') as $report)
-                                                <tr>
-                                                    <td>{{ $report->name }}</td>
-                                                    <td>{{ $report->report_date }}</td>
-                                                    <td>{{ $report->report_time_12hr }}</td>
-                                                    <td>
-                                                        <button class="btn btn-primary btn-block view-report" data-report-id="{{ $report->id }}" data-toggle="modal" data-target="#reportModal">
-                                                            View Report Submitted
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                    <tr>
+                                                        <td>{{ $report->name }}</td>
+                                                        <td>{{ $report->report_date }}</td>
+                                                        <td>{{ $report->report_time_12hr }}</td>
+                                                        <td>
+                                                            <button class="btn btn-primary btn-block view-report"
+                                                                data-report-id="{{ $report->id }}"
+                                                                data-toggle="modal" data-target="#reportModal">
+                                                                View Report Submitted
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -287,17 +290,25 @@
                     $('.view-report').click(function() {
                         var reportId = $(this).data('report-id');
 
-                        // Assuming you have a route like '/get-report-details/{reportId}' to fetch report details
                         var url = '/admin/get-report-details/' + reportId;
 
                         $.get(url, function(data) {
-                            // Assuming data is a JSON object containing detailed report information
                             var tbody = $('#reportDetailsBody');
                             tbody.empty(); // Clear previous content
 
-                            // Append new content based on the data received
-                            var newRow = '<tr><td>' + data.province_name + '</td><td>' + data.municipality_name + '</td><td>' + data.male_count + '</td><td>' + data.female_count + '</td><td>' + data.total_budget_utilized + '</td><td>' + data.quarter + '</td></tr>';
+                            // Append report details to the table
+                            var newRow = '<tr><td>' + data.report.province_name + '</td><td>' + data.report
+                                .municipality_name + '</td><td>' + data.report.male_count + '</td><td>' +
+                                data.report.female_count + '</td><td>' + data.report.total_budget_utilized +
+                                '</td><td>' + data.report.quarter + '</td></tr>';
                             tbody.append(newRow);
+
+                            // Append images to the table
+                            data.images.forEach(function(image) {
+                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image.image_path +
+                                    '" style="width: 100%;" /></td></tr>';
+                                tbody.append(imageRow);
+                            });
                         });
                     });
                 });

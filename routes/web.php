@@ -42,6 +42,7 @@ Route::middleware(['loggedin'])->group(function () {
         Route::post('/submitreport', [ClientDashboardController::class, 'submitReport']);
         Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);
         Route::get('/history', [ClientDashboardController::class, 'getReportHistoryPage']);
+        Route::get('/get-report-details/{reportId}', [ClientDashboardController::class, 'getReportDetails']);
     });
 
     // routes for the admin side

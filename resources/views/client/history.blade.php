@@ -224,21 +224,29 @@
             <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
             <script>
-                $(document).ready(function() {
+                  $(document).ready(function() {
                     $('.view-report').click(function() {
                         var reportId = $(this).data('report-id');
 
-                        // Assuming you have a route like '/get-report-details/{reportId}' to fetch report details
-                        var url = '/admin/get-report-details/' + reportId;
+                        var url = '/client/get-report-details/' + reportId;
 
                         $.get(url, function(data) {
-                            // Assuming data is a JSON object containing detailed report information
                             var tbody = $('#reportDetailsBody');
                             tbody.empty(); // Clear previous content
 
-                            // Append new content based on the data received
-                            var newRow = '<tr><td>' + data.province_name + '</td><td>' + data.municipality_name + '</td><td>' + data.male_count + '</td><td>' + data.female_count + '</td><td>' + data.total_budget_utilized + '</td><td>' + data.quarter + '</td></tr>';
+                            // Append report details to the table
+                            var newRow = '<tr><td>' + data.report.province_name + '</td><td>' + data.report
+                                .municipality_name + '</td><td>' + data.report.male_count + '</td><td>' +
+                                data.report.female_count + '</td><td>' + data.report.total_budget_utilized +
+                                '</td><td>' + data.report.quarter + '</td></tr>';
                             tbody.append(newRow);
+
+                            // Append images to the table
+                            data.images.forEach(function(image) {
+                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image.image_path +
+                                    '" style="width: 100%;" /></td></tr>';
+                                tbody.append(imageRow);
+                            });
                         });
                     });
                 });

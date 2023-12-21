@@ -118,6 +118,12 @@
                     <span>History</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/history">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Variance</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

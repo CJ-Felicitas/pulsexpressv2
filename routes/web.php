@@ -42,6 +42,11 @@ Route::middleware(['loggedin'])->group(function () {
         Route::post('/submitreport', [ClientDashboardController::class, 'submitReport']);
         Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);
         Route::get('/history', [ClientDashboardController::class, 'getReportHistoryPage']);
+        Route::get('/get-report-details/{reportId}', [ClientDashboardController::class, 'getReportDetails']);
+        Route::get('/variance', function () {
+            return view('client.variance');
+        });
+        Route::post('/submitvariance', [ClientDashboardController::class, 'submitVariance']);
     });
 
     // routes for the admin side
@@ -56,6 +61,9 @@ Route::middleware(['loggedin'])->group(function () {
 
         Route::get('/activequarters', function () {
             return view('admin.activequarters');
+        });
+        Route::get('/variance', function () {
+            return view('admin.variance');
         });
 
         Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);

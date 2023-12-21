@@ -34,9 +34,9 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 
-                <div class="sidebar-brand-text mx-3">CLIENT</div>
+                <div class="sidebar-brand-text mx-3">ADMIN</div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-2">
@@ -46,30 +46,87 @@
             </div>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/client/dashboard">
-                    <i class="fas fa-fw fa-file-import"></i>
-                    <span>Submit Report</span></a>
+                <a class="nav-link" href="/admin/dashboard/firstquarter">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>General Overview</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/client/history">
-                    <i class="fas fa-fw fa-clock"></i>
-                    <span>History</span></a>
+
+
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-map-pin"></i>
+                    <span>Provinces</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
+
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao
+                            Occidental</a>
+
+                        <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
+
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur/firstquarter">Davao Del Sur</a>
+
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte/firstquarter">Davao Del Norte</a>
+
+                        <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/quicksearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Quick Search</span></a>
             </li>
             <!-- Nav Item - Utilities Collapse Menu -->
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
+
             <!-- Heading -->
             <div class="sidebar-heading">
                 System Settings
             </div>
+
+
+
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/client/accountsettings">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Account Settings</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/target">
+                    <i class="fas fa-fw fa-bullseye"></i>
+                    <span>Set Target</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/history">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Cover Page Settings</span></a>
+            </li>
+
+            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+
+
         </ul>
+        <!-- End of Sidebar -->
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -97,69 +154,19 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="modal fade bd-example-modal-lg" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Complete Details</h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="table-responsive px-2 mt-3">
-                                    <table class="table table-bordered" width="100%"
-                                        cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Province</th>
-                                                <th>Municipality</th>
-                                                <th>Male Count</th>
-                                                <th>Female Count</th>
-                                                <th>Total Budget Utilized</th>
-                                                <th>Quarter</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="reportDetailsBody">
-                                            <!-- Content will be dynamically loaded here -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <h4 class="text-center">History</h4>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card shadow mb-4 mt-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino Program
+                                    <h6 class="m-0 font-weight-bold text-primary">Variance
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Program</th>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Report</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (session('client_history') as $report)
-                                                    <tr>
-                                                        <td>{{ $report->name }}</td>
-                                                        <td>{{ $report->report_date }}</td>
-                                                        <td>{{ $report->report_time_12hr }}</td>
-                                                        <td><button class="btn btn-primary btn-block view-report" data-report-id="{{ $report->id }}" data-toggle="modal" data-target="#reportModal">
-                                                            View Report Submitted
-                                                        </button></td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -224,11 +231,11 @@
             <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
             <script>
-                  $(document).ready(function() {
+                $(document).ready(function() {
                     $('.view-report').click(function() {
                         var reportId = $(this).data('report-id');
 
-                        var url = '/client/get-report-details/' + reportId;
+                        var url = '/admin/get-report-details/' + reportId;
 
                         $.get(url, function(data) {
                             var tbody = $('#reportDetailsBody');
@@ -243,7 +250,8 @@
 
                             // Append images to the table
                             data.images.forEach(function(image) {
-                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image.image_path +
+                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image
+                                    .image_path +
                                     '" style="width: 100%;" /></td></tr>';
                                 tbody.append(imageRow);
                             });

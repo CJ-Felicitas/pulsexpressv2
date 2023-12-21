@@ -35,6 +35,9 @@ Route::middleware(['loggedin'])->group(function () {
 
     // routes for the client side
     Route::prefix('client')->group(function () {
+        Route::get('/accountsettings', function () {
+            return view('client.accountsettings');
+        });
         Route::get('/dashboard', [ClientDashboardController::class, 'returnView']);
         Route::post('/submitreport', [ClientDashboardController::class, 'submitReport']);
         Route::get('/api/municipalities/{provinceId}', [MunicipalityController::class, 'getMunicipalities']);

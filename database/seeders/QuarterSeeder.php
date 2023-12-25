@@ -14,7 +14,7 @@ class QuarterSeeder extends Seeder
     public function run()
     {
         $data =[
-                ['quarter'=>1],
+                ['quarter'=>1, active => 1],
                 ['quarter'=>2],
                 ['quarter'=>3],
                 ['quarter'=>4]

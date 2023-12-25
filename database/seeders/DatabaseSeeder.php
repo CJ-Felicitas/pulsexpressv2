@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuarterSeeder::class);
         $this->call(DistrictsSeeder::class);
         $this->call(MunicipalitiesSeeder::class);
+        $this->call(TargetSeeder::class);
         // $this->call(OutcomeIndicatorTypeSeeder::class);
         // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         //for testing purposes only (uncomment everything below if you want to test the sample data)

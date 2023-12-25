@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `barangays`
 --
 
+create database pulsexpressdb;
+use pulsexpressdb;
+
 DROP TABLE IF EXISTS `barangays`;
 CREATE TABLE IF NOT EXISTS `barangays` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,

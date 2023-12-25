@@ -14,11 +14,12 @@ class QuarterSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['quarter' => 1, 'active' => 1], // First quarter set to active: 1
-            ['quarter' => 2], // Rest of the quarters will use default value (likely 0)
-            ['quarter' => 3],
-            ['quarter' => 4]
+            ['quarter' => 1, 'active' => 1], // Manually set first quarter to active: 1
+            ['quarter' => 2, 'active' => 0], // Manually set rest of the quarters to active: 0
+            ['quarter' => 3, 'active' => 0],
+            ['quarter' => 4, 'active' => 0]
         ];
+
 
         DB::table('quarters')->upsert($data, ['quarter'], ['quarter', 'active']);
     }

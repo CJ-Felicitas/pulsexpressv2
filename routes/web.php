@@ -65,6 +65,7 @@ Route::middleware(['loggedin'])->group(function () {
         Route::get('/variance', function () {
             return view('admin.variance');
         });
+        Route::get('getVariances', [AdminDashboardController::class, 'getVariances']);
 
         Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);
         Route::post('/editaccount', [AdminDashboardController::class, 'editaccount']);

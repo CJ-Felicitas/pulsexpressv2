@@ -305,7 +305,7 @@ class AdminDashboardController extends Controller
             ->where('reports.id', $reportId)
             ->first();
 
-            $images = DB::table('image_reports')
+        $images = DB::table('image_reports')
             ->where('report_id', $reportId)
             ->get(['image_path']);
 
@@ -433,10 +433,10 @@ class AdminDashboardController extends Controller
                     'message' => $th->getMessage()
                 ], 500);
             }
-        }
-        else {
+        } else {
             session()->flash('password_unmatched', 'Password does not match!');
-            return view('admin.accountsettings');}
+            return view('admin.accountsettings');
+        }
     }
 
 
@@ -467,5 +467,31 @@ class AdminDashboardController extends Controller
         ]);
 
         return view('admin.accountsettings');
+    }
+
+    public function getVariances(Request $request)
+    {
+        $variances = DB::table('variance')->get();
+
+        // program map
+        $programMap = [
+            ProgramsEnum::FOURPS => 'Pantawid Pamilyang Pilipino Program',
+            ProgramsEnum::SLP => 'Sustainable Livelihood Program',
+            ProgramsEnum::CENTENARRIAN => 'Centenarrian',
+            ProgramsEnum::KALAHI => 'Kapit-Bisig Laban sa Kahirapan',
+            ProgramsEnum::SOCIAL_PENSION_PROGRAM => 'Social Pension Program',
+            ProgramsEnum::FEEDING_PROGRAM => 'Supplementary Feeding Program',
+            ProgramsEnum::DRRM => 'Disaster Risk Reduction Management',
+            ProgramsEnum::AICS => 'Assistance to Individual in Crisis Situation',
+        ];
+
+        // Convert program_id to program name
+        $variances = $variances->map(function ($variance) use ($programMap) {
+            $variance->program_id = $programMap[$variance->program_id] ?? '';
+            return $variance;
+        });
+
+        // Return the updated variance data with program names
+        return response()->json($variances);
     }
 }

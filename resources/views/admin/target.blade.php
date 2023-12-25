@@ -99,7 +99,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin/accountsettings">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Account Settings</span></a>
             </li>
@@ -115,9 +115,9 @@
                     <span>History</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span>Cover Page Settings</span></a>
+                <a class="nav-link" href="/admin/variance">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Variance</span></a>
             </li>
 
             <!-- Divider -->

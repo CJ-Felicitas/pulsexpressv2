@@ -99,7 +99,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin/accountsettings">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Account Settings</span></a>
             </li>
@@ -114,7 +114,11 @@
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/variance">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Variance</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -153,7 +157,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Davao City Overview</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Davao Oriental Overview</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>

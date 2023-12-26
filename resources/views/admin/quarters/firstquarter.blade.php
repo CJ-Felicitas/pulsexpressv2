@@ -47,14 +47,14 @@
             <div class="sidebar-heading">
                 Overview
             </div>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/admin/dashboard/firstquarter">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>General Overview</span></a>
+                    <span>General Overview</span>
+                </a>
             </li>
-
-
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -161,7 +161,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="/admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     {{--  --}}
@@ -205,6 +205,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-2 mb-4">
                             <a href="/admin/dashboard/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
@@ -216,6 +217,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-2 mb-4">
                             <a href="/admin/dashboard/firstsemester" style="text-decoration: none;">
                                 <div class="card border-left-danger shadow">
@@ -261,13 +263,13 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['fourps'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -298,14 +300,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['slp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -336,14 +338,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['kalahi'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -374,14 +376,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['spp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -412,14 +414,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['sfp'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -451,14 +453,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['drrm'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -489,14 +491,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['centenarrian'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -528,14 +530,14 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (session('data1')['aics'] as $data)
-                                                <tr>
-                                                    <td>{{ $data->province_id }}</td>
+                                                    <tr>
+                                                        <td>{{ $data->province_id }}</td>
 
-                                                    <td>{{ $data->total_male_count }}</td>
-                                                    <td>{{ $data->total_female_count }}</td>
-                                                    <td>{{ $data->total_physical_count }}</td>
-                                                    <td>{{ $data->total_budget_utilized }}</td>
-                                                </tr>
+                                                        <td>{{ $data->total_male_count }}</td>
+                                                        <td>{{ $data->total_female_count }}</td>
+                                                        <td>{{ $data->total_physical_count }}</td>
+                                                        <td>{{ $data->total_budget_utilized }}</td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>

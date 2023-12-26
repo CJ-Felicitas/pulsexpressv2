@@ -97,7 +97,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin/accountsettings">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Account Settings</span></a>
             </li>
@@ -108,17 +108,16 @@
                     <span>Set Target</span></a>
             </li>
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/history">
                     <i class="fas fa-fw fa-clock"></i>
                     <span>History</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span>Cover Page Settings</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/variance">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Variance</span></a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -164,8 +163,22 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" id="variance">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Program</th>
+                                                            <th>For Quarter</th>
+                                                            <th>Reason of Variance</th>
+                                                            <th>Steering Measures</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="varianceTableBody">
 
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -231,31 +244,29 @@
             <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
             <script>
-                $(document).ready(function() {
-                    $('.view-report').click(function() {
-                        var reportId = $(this).data('report-id');
-
-                        var url = '/admin/get-report-details/' + reportId;
-
-                        $.get(url, function(data) {
-                            var tbody = $('#reportDetailsBody');
-                            tbody.empty(); // Clear previous content
-
-                            // Append report details to the table
-                            var newRow = '<tr><td>' + data.report.province_name + '</td><td>' + data.report
-                                .municipality_name + '</td><td>' + data.report.male_count + '</td><td>' +
-                                data.report.female_count + '</td><td>' + data.report.total_budget_utilized +
-                                '</td><td>' + data.report.quarter + '</td></tr>';
-                            tbody.append(newRow);
-
-                            // Append images to the table
-                            data.images.forEach(function(image) {
-                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image
-                                    .image_path +
-                                    '" style="width: 100%;" /></td></tr>';
-                                tbody.append(imageRow);
-                            });
-                        });
+                $(document).ready(function () {
+                    $.ajax({
+                        url: '/admin/getVariances', // Replace with your actual endpoint
+                        method: 'GET',
+                        success: function (response) {
+                            // Assuming response is an array of objects with 'Program', 'Quarter', 'Reason', and 'Measures' properties
+                            if (Array.isArray(response)) {
+                                var tableBody = $('#varianceTableBody');
+                                response.forEach(function (row) {
+                                    var newRow = '<tr>' +
+                                        '<td>' + row.program_id + '</td>' +
+                                        '<td>' + row.quarter_id + '</td>' +
+                                        '<td>' + row.reason_of_variance + '</td>' +
+                                        '<td>' + row.steering_measures + '</td>' +
+                                        '</tr>';
+                                    tableBody.append(newRow);
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr.responseText);
+                            // Handle errors here
+                        }
                     });
                 });
             </script>

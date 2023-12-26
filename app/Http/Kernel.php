@@ -54,7 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'loggedin' => \App\Http\Middleware\ProtectedRoutes::class,
+        'loggedin' => \App\Http\Middleware\protectedRoutes::class,
         'adminroutes' => \App\Http\Middleware\AdminRoutes::class,
         'clientroutes' => \App\Http\Middleware\ClientRoutes::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

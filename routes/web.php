@@ -17,7 +17,8 @@ use App\Http\Controllers\{
     DavaoDelNorteController,
     DavaoDelSurController,
     DavaoOccidentalController,
-    DavaoOrientalController
+    DavaoOrientalController,
+    ExportController
 };
 
 Route::get('/', function () {
@@ -66,6 +67,9 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.variance');
         });
 
+
+        Route::get('getVariances', [AdminDashboardController::class, 'getVariances']);
+        Route::get('/export', [ExportController::class, 'exportData']);
         Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);
         Route::post('/editaccount', [AdminDashboardController::class, 'editaccount']);
         Route::get('/accountsettings', [AdminDashboardController::class, 'getAccountSettingsPage']);
@@ -75,6 +79,11 @@ Route::middleware(['loggedin'])->group(function () {
 
         Route::get('/quicksearch', function () {
             return view('admin.quicksearch');
+        });
+
+        // Routes for export
+        Route::prefix('/export')->group(function () {
+
         });
         // grouped routes of the admin
         Route::prefix('/dashboard')->group(function () {

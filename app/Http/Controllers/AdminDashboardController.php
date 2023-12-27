@@ -494,4 +494,13 @@ class AdminDashboardController extends Controller
         // Return the updated variance data with program names
         return response()->json($variances);
     }
+
+    public function getYears(){
+        $years = DB::table('reports')
+            ->select('year')
+            ->groupBy('year')
+            ->get();
+
+        return response()->json($years);
+    }
 }

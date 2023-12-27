@@ -31,6 +31,15 @@ Route::get('/lmao', function () {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+      // Routes for export
+      Route::prefix('/export')->group(function () {
+        Route::get('/firstquarter', [ExportController::class, 'generalFirstQuarter']);
+        Route::get('/testexport', [ExportController::class, 'exportshit']);
+        Route::get('/testexport2', [ExportController::class, 'fourps']);
+    });
+
+
+
 // Routes accessible only to authenticated users
 Route::middleware(['loggedin'])->group(function () {
 
@@ -81,10 +90,11 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.quicksearch');
         });
 
-        // Routes for export
-        Route::prefix('/export')->group(function () {
+        // // Routes for export
+        // Route::prefix('/export')->group(function () {
+        //     Route::get('/firstquarter', [ExportController::class, 'generalFirstQuarter']);
+        // });
 
-        });
         // grouped routes of the admin
         Route::prefix('/dashboard')->group(function () {
             Route::get('/firstquarter', [AdminDashboardController::class, 'firstQuarter']);

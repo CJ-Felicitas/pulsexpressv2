@@ -67,13 +67,13 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao Occidental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooriental">Davao Oriental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelsur">Davao Del Sur</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur/firstquarter">Davao Del Sur</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelnorte">Davao Del Norte</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte/firstquarter">Davao Del Norte</a>
 
                         <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
                     </div>
@@ -161,7 +161,8 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="/export/testexport" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="/export/testexport"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     {{--  --}}
@@ -241,6 +242,7 @@
                             </a>
                         </div>
                     </div>
+
 
                     <div class="row">
                         <div class="col-md-12">
@@ -584,6 +586,39 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                $(document).ready(function() {
+                    // Event listener for province selection
+                    $('#provinceSelect').on('change', function() {
+                        var provinceId = $(this).val();
+
+                        // AJAX request to fetch municipalities based on the selected province
+                        $.ajax({
+                            url: '/client/api/municipalities/' + provinceId,
+                            type: 'GET',
+                            success: function(data) {
+                                // Clear existing options
+                                $('#municipalitySelect').empty();
+
+                                // Add default option
+                                $('#municipalitySelect').append(
+                                    '<option value="" disabled selected>Select Municipality</option>'
+                                );
+
+                                // Add fetched municipalities
+                                $.each(data, function(key, value) {
+                                    $('#municipalitySelect').append('<option value="' + value
+                                        .id + '">' + value.municipality + '</option>');
+                                });
+                            },
+                            error: function(error) {
+                                console.error('Error fetching municipalities: ', error);
+                            }
+                        });
+                    });
+                });
+            </script>
 
             <!-- Bootstrap core JavaScript -->
             <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

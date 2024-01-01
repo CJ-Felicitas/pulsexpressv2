@@ -84,8 +84,6 @@ class ClientDashboardController extends Controller
         $user = Auth::user();
         $user_type = null;
 
-
-
         // User type map
         $userTypeMap = [
             5 => 1,
@@ -103,8 +101,6 @@ class ClientDashboardController extends Controller
         // $specificQuarterId = 1; // Replace with the specific quarter ID
         // $specificProgramId = 1; // Replace with the specific program ID
 
-
-
         $validate = $request->validate([
             'province_id' => 'required',
             'municipality_id' => 'required',
@@ -120,19 +116,18 @@ class ClientDashboardController extends Controller
         $quarter_id = $current_active_quarter->id;
 
         $currentDate = Carbon::now('Asia/Manila');
-        $lastDayOfMonth = $currentDate->copy()->endOfMonth();
-        $submissionWindowStart = $lastDayOfMonth->copy()->subDays(5)->startOfDay();
+        $submissionWindowStart = $currentDate->copy()->subMonth()->endOfMonth()->startOfDay();
+        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(4)->endOfDay();
 
         // $previous_quarter = DB::table('quarters')
         //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
         //     ->first();
-
-
-
-
+        \Log::info('Current Date: ' . $currentDate);
+        \Log::info('Submission Window Start: ' . $submissionWindowStart);
+        \Log::info('Submission Window End: ' . $submissionWindowEnd);
         if ($validate) {
             try {
-                // if ($currentDate->isLastOfMonth() || ($currentDate->greaterThanOrEqualTo($submissionWindowStart) && $currentDate->lessThanOrEqualTo($lastDayOfMonth))) {
+                if ($currentDate->between($submissionWindowStart, $submissionWindowEnd)) {
                 DB::beginTransaction();
                 $reportId = DB::table('reports')->insertGetId([
                     'program_id' => $user_type,
@@ -144,8 +139,8 @@ class ClientDashboardController extends Controller
                     'total_physical_count' => $validate['total_count'],
                     'total_budget_utilized' => $validate['budget_utilized'],
                     'year' => Carbon::now()->year,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
+                    'created_at' => Carbon::now('Asia/Manila'),
+                    'updated_at' => Carbon::now('Asia/Manila'),
                 ]);
 
                 if ($request->hasFile('upload_inputfile')) {
@@ -168,10 +163,10 @@ class ClientDashboardController extends Controller
 
                 DB::commit();
                 return redirect()->back()->with('report_success', 'Report Submitted');
-                // }
-                // else {
-                // return redirect()->back()->with('report_error', 'Unable to submit the report');
-                // }
+                }
+                else {
+                return redirect()->back()->with('report_error', 'Unable to submit the report');
+                }
             } catch (\Throwable $th) {
                 return response()->json([
                     'message' => $th->getMessage(),

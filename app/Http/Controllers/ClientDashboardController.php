@@ -150,8 +150,9 @@ class ClientDashboardController extends Controller
                         $timestamp = now()->format('Y-m-d_H-i-s');
                         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
                         $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
-                        $file->storeAs('public/images', $fileName);
-                        $file->storeAs('images', $fileName);
+                        // $file->storeAs('public/images', $fileName);
+                        // $file->storeAs('images', $fileName);
+                        $file->move(public_path('images'), $fileName);
                         DB::table('image_reports')->insert([
                             'report_id' => $reportId,
                             'image_path' => 'images/' . $fileName,

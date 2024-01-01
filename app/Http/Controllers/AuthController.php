@@ -42,12 +42,9 @@ class AuthController extends Controller
 
         $user_type = $userTypeMap[$user->user_type] ?? null;
 
-
         $previous_quarter = DB::table('quarters')
             ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
             ->first();
-
-
 
         $now = Carbon::now('Asia/Manila');
 
@@ -56,33 +53,31 @@ class AuthController extends Controller
         $secondQuarterEnd = Carbon::create(null, 7, 6, 0, 0, 0, 'Asia/Manila');
         $thirdQuarterEnd = Carbon::create(null, 10, 6, 0, 0, 0, 'Asia/Manila');
         $fourthQuarterEnd = Carbon::create(null, 1, 6, 0, 0, 0, 'Asia/Manila')->addYear();
+        // First, set all quarters to inactive
+        // First, set all quarters to inactive
+        DB::table('quarters')->update(['active' => 0]);
 
-        // Determine the active quarter based on the current date
+        // Then, activate the correct quarter based on the current date
         if ($now->month == 1 && $now->day <= 5) {
-            // January with overlap of the previous year's fourth quarter
-            DB::table('quarters')->update([
-                'active' => DB::raw('IF(quarter = 4, 0, IF(quarter = 1, 1, 0))')
-            ]);
+            // This period belongs to the fourth quarter of the previous year
+            DB::table('quarters')->where('quarter', 4)->update(['active' => 1]);
         } elseif ($now->lessThanOrEqualTo($firstQuarterEnd)) {
-            DB::table('quarters')->update([
-                'active' => DB::raw('IF(quarter = 1, 1, 0)')
-            ]);
+            DB::table('quarters')->where('quarter', 1)->update(['active' => 1]);
         } elseif ($now->lessThanOrEqualTo($secondQuarterEnd)) {
-            DB::table('quarters')->update([
-                'active' => DB::raw('IF(quarter = 2, 1, 0)')
-            ]);
+            DB::table('quarters')->where('quarter', 2)->update(['active' => 1]);
         } elseif ($now->lessThanOrEqualTo($thirdQuarterEnd)) {
-            DB::table('quarters')->update([
-                'active' => DB::raw('IF(quarter = 3, 1, 0)')
-            ]);
-        } elseif ($now->lessThanOrEqualTo($fourthQuarterEnd)) {
-            DB::table('quarters')->update([
-                'active' => DB::raw('IF(quarter = 4, 1, 0)')
-            ]);
+            DB::table('quarters')->where('quarter', 3)->update(['active' => 1]);
+        } elseif ($now->lessThanOrEqualTo($fourthQuarterEnd) || ($now->month == 1 && $now->day <= 5)) {
+            DB::table('quarters')->where('quarter', 4)->update(['active' => 1]);
+        } else {
+            // If the date is beyond January 5, it belongs to the first quarter of the next year
+            DB::table('quarters')->where('quarter', 1)->update(['active' => 1]);
         }
+
         if ($user->user_type == UserTypeEnum::ADMIN) {
             return redirect('/admin/dashboard/firstquarter');
         }
+
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
         $quarter_id = $current_active_quarter->id;
 
@@ -111,7 +106,6 @@ class AuthController extends Controller
         session(['user_data' => $user]);
 
         // Return redirect to the appropriate dashboard route based on user_type
-
         if ($user->user_type != UserTypeEnum::ADMIN && ($checkvariancesubmission || $booleancheck)) {
             return redirect('/client/dashboard');
         } else {

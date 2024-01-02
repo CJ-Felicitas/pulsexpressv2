@@ -304,7 +304,7 @@
 
                             // Append images to the table
                             data.images.forEach(function(image) {
-                                var imageRow = '<tr><td colspan="6"><img src="/storage/' + image.image_path +
+                                var imageRow = '<tr><td colspan="6"><img src="/' + image.image_path +
                                     '" style="width: 100%;" /></td></tr>';
                                 tbody.append(imageRow);
                             });

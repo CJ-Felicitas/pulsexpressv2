@@ -3,15 +3,16 @@
 namespace App\Exports\General\FirstQuarter;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Enums\ProvinceEnum;
 use DB;
 use App\Enums\ProgramsEnum;
-
-class FourpsExport implements FromCollection
+use Maatwebsite\Excel\Sheet;
+class FourpsExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
 
     protected $quarterId;
     protected $year;
@@ -33,8 +34,8 @@ class FourpsExport implements FromCollection
                 DB::raw('SUM(total_budget_utilized) as total_budget_utilized')
             )
             ->where('quarter_id', 4)
-            ->where('program_id', ProgramsEnum::FOURPS)
-            ->where('year', 2023)
+            ->where('program_id', ProgramsEnum::SLP)
+            ->where('year', 2024)
             ->groupBy('province_id')
             ->get();
 
@@ -62,4 +63,17 @@ class FourpsExport implements FromCollection
         }
         return $data;
     }
+
+    public function headings(): array
+    {
+        return [
+            ['General First Quarter Summary', null, null, null, null],
+            ['Province',
+                'Total Male Count',
+                'Total Female Count',
+                'Total Physical Count',
+                'Total Budget Utilized']
+        ];
+    }
+
 }

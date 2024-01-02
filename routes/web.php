@@ -11,7 +11,6 @@ use App\Http\Controllers\{
     MunicipalityController,
     ClientDashboardController,
     AdminDashboardController,
-    ProvinceController,
     DavaoDeOroController,
     DavaoCityController,
     DavaoDelNorteController,

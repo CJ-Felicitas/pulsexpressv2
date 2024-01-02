@@ -28,14 +28,17 @@ Route::get('/', function () {
 Route::get('/lmao', function () {
     return view('admin.quicksearch');
 });
+
+Route::get('/getyears', [AdminDashboardController::class, 'getyears']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
       // Routes for export
       Route::prefix('/export')->group(function () {
-        Route::get('/firstquarter', [ExportController::class, 'generalFirstQuarter']);
+        Route::get('/firstquarter', [ExportController::class, 'generalfourpsfirstquarter']);
         Route::get('/testexport', [ExportController::class, 'exportshit']);
         Route::get('/testexport2', [ExportController::class, 'fourps']);
+        Route::get('/slpfirstquarter', [ExportController::class, 'generalslpfirstquarter']);
     });
 
 

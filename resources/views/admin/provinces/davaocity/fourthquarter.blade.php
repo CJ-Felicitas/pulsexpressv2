@@ -203,7 +203,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="/admin/provinces/davaocity/fourthquarter" style="text-decoration: none;">
-                                <div class="card border-left-info shadow">
+                                <div class="card bg-info text-white shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             4th Quarter

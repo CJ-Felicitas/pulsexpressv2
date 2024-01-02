@@ -183,7 +183,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="/admin/provinces/davaocity/secondquarter" style="text-decoration: none;">
-                                <div class="card border-left-secondary shadow">
+                                <div class="card bg-secondary text-white shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             2nd Quarter

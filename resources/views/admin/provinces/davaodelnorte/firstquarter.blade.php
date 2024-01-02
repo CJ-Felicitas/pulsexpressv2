@@ -172,7 +172,7 @@
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-2 mb-4">
                             <a href="/admin/provinces/davaodelnorte/firstquarter" style="text-decoration: none;">
-                                <div class="card border-left-primary shadow">
+                                <div class="card bg-primary text-white shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             1st Quarter

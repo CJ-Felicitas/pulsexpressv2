@@ -194,7 +194,7 @@
                         </div>
                         <div class="col-md-2 mb-4">
                             <a href="/admin/provinces/davaodeoro/thirdquarter" style="text-decoration: none;">
-                                <div class="card border-left-success shadow">
+                                <div class="card bg-success text-white shadow">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             3rd Quarter

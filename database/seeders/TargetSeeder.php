@@ -23,8 +23,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -32,8 +32,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -41,8 +41,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -50,8 +50,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // slp
@@ -60,8 +60,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -69,8 +69,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -78,8 +78,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -87,8 +87,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // kalahi
@@ -97,8 +97,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -106,8 +106,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -115,8 +115,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -124,8 +124,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // Social Pension
@@ -134,8 +134,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -143,8 +143,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -152,8 +152,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -161,8 +161,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // SFP
@@ -171,8 +171,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -180,8 +180,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -189,8 +189,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -198,8 +198,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // drrm
@@ -208,8 +208,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -217,8 +217,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -226,8 +226,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -235,8 +235,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // centenarrian
@@ -245,8 +245,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -254,8 +254,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -263,8 +263,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -272,8 +272,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // AICS
@@ -282,8 +282,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FIRST_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -291,8 +291,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::SECOND_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -300,8 +300,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::THIRD_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             [
@@ -309,8 +309,8 @@ class TargetSeeder extends Seeder
                 'quarter_id' => QuartersEnum::FOURTH_QUARTER,
                 'physical_target' => 0,
                 'budget_target' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 // Add more columns and values as needed for the first row
             ],
             // Add more associative arrays for additional rows

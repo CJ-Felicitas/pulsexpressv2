@@ -75,7 +75,7 @@
 
                         <a class="collapse-item" href="/admin/provinces/davaodelnorte/firstquarter">Davao Del Norte</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
+                        <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
                     </div>
                 </div>
             </li>

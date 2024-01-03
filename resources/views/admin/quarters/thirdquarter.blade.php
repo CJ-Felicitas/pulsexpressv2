@@ -67,15 +67,15 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/admin/provinces/davaodeoro/firstquarter">Davao De Oro</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooccidental">Davao Occidental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooccidental/firstquarter">Davao Occidental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaooriental">Davao Oriental</a>
+                        <a class="collapse-item" href="/admin/provinces/davaooriental/firstquarter">Davao Oriental</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelsur">Davao Del Sur</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelsur/firstquarter">Davao Del Sur</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaodelnorte">Davao Del Norte</a>
+                        <a class="collapse-item" href="/admin/provinces/davaodelnorte/firstquarter">Davao Del Norte</a>
 
-                        <a class="collapse-item" href="/admin/provinces/davaocity">Davao City</a>
+                        <a class="collapse-item" href="/admin/provinces/davaocity/firstquarter">Davao City</a>
                     </div>
                 </div>
             </li>

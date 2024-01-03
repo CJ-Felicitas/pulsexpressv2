@@ -34,10 +34,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
       // Routes for export
       Route::prefix('/export')->group(function () {
-        Route::get('/firstquarter', [ExportController::class, 'generalfourpsfirstquarter']);
-        Route::get('/testexport', [ExportController::class, 'exportshit']);
-        Route::get('/testexport2', [ExportController::class, 'fourps']);
-        Route::get('/slpfirstquarter', [ExportController::class, 'generalslpfirstquarter']);
+        Route::get('/generalfirstquarter', [ExportController::class, 'generalfirstquarter']);
     });
 
 

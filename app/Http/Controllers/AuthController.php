@@ -83,11 +83,11 @@ class AuthController extends Controller
 
         $booleancheck = false;
 
-        $previous_quarter_result = DB::table('reports')
-            ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
-            ->where('quarter_id', $previous_quarter->id)
-            ->where('program_id', $user_type)
-            ->first();
+            $previous_quarter_result = DB::table('reports')
+                ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
+                ->where('quarter_id', $previous_quarter->id)
+                ->where('program_id', $user_type)
+                ->first();
 
         $actual_target = DB::table('program_targets')
             ->where('quarter_id', $previous_quarter->id)
@@ -95,6 +95,8 @@ class AuthController extends Controller
             ->first();
 
         $booleancheck = ($previous_quarter_result->physical_target < $actual_target->physical_target && $previous_quarter_result->budget_target < $actual_target->budget_target);
+
+        $empty_target = ($previous_quarter_result->physical_target == 0 && $previous_quarter_result->budget_target == 0);
 
         $checkvariancesubmission = DB::table('variance_submission_check')
             ->where('quarter_id', $previous_quarter->id)
@@ -106,7 +108,7 @@ class AuthController extends Controller
         session(['user_data' => $user]);
 
         // Return redirect to the appropriate dashboard route based on user_type
-        if ($user->user_type != UserTypeEnum::ADMIN && ($checkvariancesubmission || $booleancheck)) {
+        if ($user->user_type != UserTypeEnum::ADMIN && ($checkvariancesubmission || $booleancheck || $empty_target)) {
             return redirect('/client/dashboard');
         } else {
             return redirect('/client/variance');

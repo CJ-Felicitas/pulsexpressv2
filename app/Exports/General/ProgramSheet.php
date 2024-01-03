@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Exports\General\FirstQuarter;
+namespace App\Exports\General;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Enums\ProvinceEnum;
-use DB;
 use App\Enums\ProgramsEnum;
-use Maatwebsite\Excel\Sheet;
-class FourpsExport implements FromCollection, WithHeadings
+use DB;
+use Maatwebsite\Excel\Concerns\WithTitle;
+
+class ProgramSheet implements FromCollection, WithColumnWidths, WithHeadings, WithTitle
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -16,11 +18,15 @@ class FourpsExport implements FromCollection, WithHeadings
 
     protected $quarterId;
     protected $year;
+    protected $title;
+    protected $programID;
 
-    public function __construct($quarterId, $year)
+    public function __construct($quarterId, $year, $programId, $title)
     {
         $this->quarterId = $quarterId;
         $this->year = $year;
+        $this->programID = $programId;
+        $this->title = $title;
     }
 
     public function collection()
@@ -33,9 +39,9 @@ class FourpsExport implements FromCollection, WithHeadings
                 DB::raw('SUM(male_count + female_count) as total_physical_count'),
                 DB::raw('SUM(total_budget_utilized) as total_budget_utilized')
             )
-            ->where('quarter_id', 4)
-            ->where('program_id', ProgramsEnum::SLP)
-            ->where('year', 2024)
+            ->where('quarter_id', $this->quarterId)
+            ->where('program_id', $this->programID)
+            ->where('year', $this->year)
             ->groupBy('province_id')
             ->get();
 
@@ -67,13 +73,29 @@ class FourpsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            ['General First Quarter Summary', null, null, null, null],
-            ['Province',
+
+            [
+                'Province',
                 'Total Male Count',
                 'Total Female Count',
                 'Total Physical Count',
-                'Total Budget Utilized']
+                'Total Budget Utilized'
+            ]
         ];
     }
 
+    public function columnWidths(): array
+    {
+        return [
+            'A' => 30,
+            'B' => 20,
+            'C' => 20,
+            'D' => 20,
+            'E' => 20,
+        ];
+    }
+    public function title(): string
+    {
+        return $this->title;
+    }
 }

@@ -24,16 +24,13 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/lmao', function () {
-    return view('admin.quicksearch');
-});
+// Route::get('/lmao', function () {
+//     return view('admin.quicksearch');
+// });
 
 Route::get('/getyears', [AdminDashboardController::class, 'getyears']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
-
-
-
 
 // Routes accessible only to authenticated users
 Route::middleware(['loggedin'])->group(function () {
@@ -72,7 +69,6 @@ Route::middleware(['loggedin'])->group(function () {
             return view('admin.variance');
         });
 
-
         Route::get('getVariances', [AdminDashboardController::class, 'getVariances']);
         Route::get('/export', [ExportController::class, 'exportData']);
         Route::post('/editpassword', [AdminDashboardController::class, 'editpassword']);
@@ -85,11 +81,6 @@ Route::middleware(['loggedin'])->group(function () {
         Route::get('/quicksearch', function () {
             return view('admin.quicksearch');
         });
-
-        // // Routes for export
-        // Route::prefix('/export')->group(function () {
-        //     Route::get('/firstquarter', [ExportController::class, 'generalFirstQuarter']);
-        // });
 
         // grouped routes of the admin
         Route::prefix('/dashboard')->group(function () {
@@ -117,6 +108,49 @@ Route::middleware(['loggedin'])->group(function () {
             Route::get('/generalfourthquarter', [ExportController::class, 'generalfourthquarter']);
             Route::get('/generalfirstsemester', [ExportController::class, 'generalfirstsemester']);
             Route::get('/generalsecondsemester', [ExportController::class, 'generalsecondsemester']);
+
+            Route::prefix('davaodeoro')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaodeorofirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaodeorosecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaodeorothirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaodeorofourthquarter']);
+            });
+
+            Route::prefix('davaooccidental')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaooccidentalfirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaooccidentalsecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaooccidentalthirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaooccidentalfourthquarter']);
+            });
+
+            Route::prefix('davaooriental')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaoorientalfirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaoorientalsecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaoorientalthirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaoorientalfourthquarter']);
+            });
+
+            Route::prefix('davaodelsur')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaodelsurfirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaodelsursecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaodelsurthirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaodelsurfourthquarter']);
+            });
+
+            Route::prefix('davaodelnorte')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaodelnortefirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaodelnortesecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaodelnortethirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaodelnortefourthquarter']);
+            });
+
+            Route::prefix('davaocity')->group(function () {
+                Route::get('/firstquarter', [ExportController::class, 'davaocityfirstquarter']);
+                Route::get('/secondquarter', [ExportController::class, 'davaocitysecondquarter']);
+                Route::get('/thirdquarter', [ExportController::class, 'davaocitythirdquarter']);
+                Route::get('/fourthquarter', [ExportController::class, 'davaocityfourthquarter']);
+            });
+
         });
 
 

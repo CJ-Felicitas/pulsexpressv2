@@ -32,10 +32,6 @@ Route::get('/getyears', [AdminDashboardController::class, 'getyears']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-      // Routes for export
-      Route::prefix('/export')->group(function () {
-        Route::get('/generalfirstquarter', [ExportController::class, 'generalfirstquarter']);
-    });
 
 
 
@@ -65,6 +61,7 @@ Route::middleware(['loggedin'])->group(function () {
         Route::get('/history', [AdminDashboardController::class, 'getReportHistoryPage']);
         Route::post('/search', [AdminDashboardController::class, 'quicksearch']);
         Route::get('/get-report-details/{reportId}', [AdminDashboardController::class, 'getReportDetails']);
+
         // Route::get('/get-report-details/{reportId}', [ClientDashboardController::class, 'getReportDetails']);
         Route::get('/target', [TargetController::class, 'returnview']);
 
@@ -111,6 +108,17 @@ Route::middleware(['loggedin'])->group(function () {
             Route::post('/setthirdquarter', [QuartersController::class, 'thirdquarter']);
             Route::post('/setfourthquarter', [QuartersController::class, 'fourthquarter']);
         });
+
+        // Routes for export
+        Route::prefix('/export')->group(function () {
+            Route::get('/generalfirstquarter', [ExportController::class, 'generalfirstquarter']);
+            Route::get('/generalsecondquarter', [ExportController::class, 'generalsecondquarter']);
+            Route::get('/generalthirdquarter', [ExportController::class, 'generalthirdquarter']);
+            Route::get('/generalfourthquarter', [ExportController::class, 'generalfourthquarter']);
+            Route::get('/generalfirstsemester', [ExportController::class, 'generalfirstsemester']);
+            Route::get('/generalsecondsemester', [ExportController::class, 'generalsecondsemester']);
+        });
+
 
         // provinces for the admin
         Route::prefix('provinces')->group(function () {

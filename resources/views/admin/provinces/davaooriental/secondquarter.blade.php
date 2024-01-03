@@ -165,7 +165,7 @@
 
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row justify-content-center">
 
 
                         <!-- Earnings (Monthly) Card Example -->
@@ -213,7 +213,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        {{-- <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
                                 <div class="card border-left-danger shadow">
                                     <div class="card-body">
@@ -223,8 +223,8 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                        <div class="col-md-2 mb-4">
+                        </div> --}}
+                        {{-- <div class="col-md-2 mb-4">
                             <a href="" style="text-decoration: none;">
                                 <div class="card border-left-dark shadow">
                                     <div class="card-body">
@@ -234,7 +234,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row">

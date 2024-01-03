@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // for production (uncomment everything below if everything is ready for production)
         $this->call(UserTypeSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ProgramsSeeder::class);
@@ -23,10 +22,5 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictsSeeder::class);
         $this->call(MunicipalitiesSeeder::class);
         $this->call(TargetSeeder::class);
-        // $this->call(OutcomeIndicatorTypeSeeder::class);
-        // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        //for testing purposes only (uncomment everything below if you want to test the sample data)
-        // $this->call(BenefeciarySampleDataSeeder::class);
-        // $this->call(BatchlistSeederSample::class);
     }
 }

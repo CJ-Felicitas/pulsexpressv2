@@ -60,8 +60,12 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
 
                                     </form>
-                                    <br><br><br><br>
-
+<br>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <img src="images/bagongpilipinas.png" width="100%" alt="">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

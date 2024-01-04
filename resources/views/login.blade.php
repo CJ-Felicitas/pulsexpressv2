@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +23,7 @@
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div style="height: 100vh;" class="row justify-content-center align-items-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -60,7 +61,7 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
 
                                     </form>
-<br>
+                                    <br>
                                     <div class="row mt-3">
                                         <div class="col-md-12">
                                             <img src="images/bagongpilipinas.png" width="100%" alt="">
@@ -69,6 +70,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
 

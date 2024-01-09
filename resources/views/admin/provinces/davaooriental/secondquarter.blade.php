@@ -169,7 +169,7 @@
 
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaooriental/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
@@ -180,7 +180,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaooriental/secondquarter" style="text-decoration: none;">
                                 <div class="card bg-secondary text-white shadow">
                                     <div class="card-body">
@@ -191,7 +191,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaooriental/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
@@ -202,7 +202,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaooriental/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">

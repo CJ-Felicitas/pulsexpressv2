@@ -170,7 +170,7 @@
 
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaodelsur/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
@@ -181,7 +181,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaodelsur/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
@@ -192,7 +192,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaodelsur/thirdquarter" style="text-decoration: none;">
                                 <div class="card border-left-success shadow">
                                     <div class="card-body">
@@ -203,7 +203,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaodelsur/fourthquarter" style="text-decoration: none;">
                                 <div class="card bg-info text-white shadow">
                                     <div class="card-body">

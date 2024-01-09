@@ -168,7 +168,7 @@
 
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaocity/firstquarter" style="text-decoration: none;">
                                 <div class="card border-left-primary shadow">
                                     <div class="card-body">
@@ -179,7 +179,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaocity/secondquarter" style="text-decoration: none;">
                                 <div class="card border-left-secondary shadow">
                                     <div class="card-body">
@@ -190,7 +190,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaocity/thirdquarter" style="text-decoration: none;">
                                 <div class="card bg-success text-white shadow">
                                     <div class="card-body">
@@ -201,7 +201,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-2 mb-4">
+                        <div class="col-md-3 mb-4">
                             <a href="/admin/provinces/davaocity/fourthquarter" style="text-decoration: none;">
                                 <div class="card border-left-info shadow">
                                     <div class="card-body">

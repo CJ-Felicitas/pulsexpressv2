@@ -26,6 +26,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+
         // User type map
         $userTypeMap = [
             5 => 1,
@@ -38,34 +39,38 @@ class AuthController extends Controller
             12 => 8,
         ];
 
+        // assign the usertypemap
+        $user_type = $userTypeMap[$user->user_type] ?? null;
+
+        // mapping the quarter that will get the previous active quarter
         $quarterMapping = [
             1 => 4,
             2 => 1,
             3 => 2,
             4 => 3,
         ];
+
+        // get the current active quarter for the current year
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
+
+        // assign the map
         $previous_quarter = $quarterMapping[$current_active_quarter->quarter];
-
-
-        $user_type = $userTypeMap[$user->user_type] ?? null;
 
         \Log::info('CHECK ME OUT: ' . $previous_quarter);
 
+        // gets the current date 
         $now = Carbon::now('Asia/Manila');
 
-        // Define quarter boundaries considering the additional 5 days for the next quarter
+        // check and updates the quarter base on the date on which a quarter belongs
         $firstQuarterEnd = Carbon::create(null, 4, 6, 0, 0, 0, 'Asia/Manila');
         $secondQuarterEnd = Carbon::create(null, 7, 6, 0, 0, 0, 'Asia/Manila');
         $thirdQuarterEnd = Carbon::create(null, 10, 6, 0, 0, 0, 'Asia/Manila');
         $fourthQuarterEnd = Carbon::create(null, 1, 6, 0, 0, 0, 'Asia/Manila')->addYear();
-        // First, set all quarters to inactive
+        
         // First, set all quarters to inactive
         DB::table('quarters')->update(['active' => 0]);
 
-        // Then, activate the correct quarter based on the current date
         if ($now->month == 1 && $now->day <= 5) {
-            // This period belongs to the fourth quarter of the previous year
             DB::table('quarters')->where('quarter', 4)->update(['active' => 1]);
         } elseif ($now->lessThanOrEqualTo($firstQuarterEnd)) {
             DB::table('quarters')->where('quarter', 1)->update(['active' => 1]);
@@ -80,29 +85,56 @@ class AuthController extends Controller
             DB::table('quarters')->where('quarter', 1)->update(['active' => 1]);
         }
 
+        // redirects the user to the admin page if the user is admin, codes below are not necessary anymore for admin session
         if ($user->user_type == UserTypeEnum::ADMIN) {
             return redirect('/admin/dashboard/firstquarter');
         }
 
- 
-        $quarter_id = $current_active_quarter->id;
+    // get the id of the current quarter
+    $quarter_id = $current_active_quarter->id;
 
-        $booleancheck = false;
+    // initialize the booleancheck to false as default for checking the condition of variance
+    $booleancheck = false;
+    $previous_quarter_result = null;
 
-            $previous_quarter_result = DB::table('reports')
-                ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
-                ->where('quarter_id', $previous_quarter)
-                ->where('program_id', $user_type)
-                ->first();
+    /**
+     * If the current active quarter is "quarter one"
+     * then an if else condition should be done in here that it will take the previous
+     * quarter result which is fourth quarter and then minus year of the current year
+     * 
+     * Example: 
+     * January 6, 2024 then it should query the database to look up for 4th quarter 2023
+     */
+    if ($current_active_quarter->id === 1) {
+        $previous_quarter_result = DB::table('reports')
+        ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
+        ->where('quarter_id', $previous_quarter)
+        ->where('program_id', $user_type)
+        ->where('year', Carbon::now()->subYear()->year)
+        ->first();
+    } else {
+        /**
+         * In the else condition, it will detect only the first, second, and third quarter.
+         * The difference in between both of the conditions are Carbon::now()->year and Carbon::now()->subYear()->year
+         * which Carbon::now()->subYear()->year means subtract one year from the current year.
+         */
+    $previous_quarter_result = DB::table('reports')
+    ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
+    ->where('quarter_id', $previous_quarter)
+    ->where('program_id', $user_type)
+    ->where('year', Carbon::now()->year)
+    ->first();
+    }
 
-//   \Log::info('previous quarter result: ' . $previous_quarter_result);
+        //\Log::info('previous quarter result: ' . $previous_quarter_result);
 
+        // performs a query to the database to fetch all the current reports
         $actual_target = DB::table('program_targets')
             ->where('quarter_id', $previous_quarter)
             ->where('program_id', $user_type)
             ->first();
 
-            // \Log::info('actual target: ' . $actual_target);
+        // \Log::info('actual target: ' . $actual_target);
 
         // check if the program target and budget target doesnt match with the actual target 
         $booleancheck = ($previous_quarter_result->physical_target < $actual_target->physical_target && $previous_quarter_result->budget_target < $actual_target->budget_target);
@@ -128,6 +160,7 @@ class AuthController extends Controller
         }
     }
 
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -135,4 +168,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+
 }

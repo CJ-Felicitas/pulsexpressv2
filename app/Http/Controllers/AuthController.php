@@ -38,13 +38,19 @@ class AuthController extends Controller
             12 => 8,
         ];
 
+        $quarterMapping = [
+            1 => 4,
+            2 => 1,
+            3 => 2,
+            4 => 3,
+        ];
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
+        $previous_quarter = $quarterMapping[$current_active_quarter->quarter];
+
 
         $user_type = $userTypeMap[$user->user_type] ?? null;
 
-        $previous_quarter = DB::table('quarters')
-            ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
-            ->first();
+        \Log::info('CHECK ME OUT: ' . $previous_quarter);
 
         $now = Carbon::now('Asia/Manila');
 
@@ -78,28 +84,35 @@ class AuthController extends Controller
             return redirect('/admin/dashboard/firstquarter');
         }
 
-        $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
+ 
         $quarter_id = $current_active_quarter->id;
 
         $booleancheck = false;
 
             $previous_quarter_result = DB::table('reports')
                 ->selectRaw('SUM(total_physical_count) AS physical_target, SUM(total_budget_utilized) AS budget_target')
-                ->where('quarter_id', $previous_quarter->id)
+                ->where('quarter_id', $previous_quarter)
                 ->where('program_id', $user_type)
                 ->first();
 
+//   \Log::info('previous quarter result: ' . $previous_quarter_result);
+
         $actual_target = DB::table('program_targets')
-            ->where('quarter_id', $previous_quarter->id)
+            ->where('quarter_id', $previous_quarter)
             ->where('program_id', $user_type)
             ->first();
 
+            // \Log::info('actual target: ' . $actual_target);
+
+        // check if the program target and budget target doesnt match with the actual target 
         $booleancheck = ($previous_quarter_result->physical_target < $actual_target->physical_target && $previous_quarter_result->budget_target < $actual_target->budget_target);
 
+        // check if the previous target and budget target is zero (for fresh deployment only)
         $empty_target = ($previous_quarter_result->physical_target == 0 && $previous_quarter_result->budget_target == 0);
 
+        // check if the user has already submitted a variance submission
         $checkvariancesubmission = DB::table('variance_submission_check')
-            ->where('quarter_id', $previous_quarter->id)
+            ->where('quarter_id', $previous_quarter)
             ->where('program_id', $user_type)
             ->where('submitted', 1)
             ->first();

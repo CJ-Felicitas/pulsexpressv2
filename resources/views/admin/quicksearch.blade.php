@@ -260,6 +260,13 @@
                                                         {{-- --}}
                                                     </tbody>
                                                 </table>
+                                            
+                                                <div id="not-found">
+                                   
+                                                </div>
+
+                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -328,6 +335,7 @@
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
             <script>
+                var resultNotFoundAppended = false;
                 $(document).ready(function () {
                     // Handle form submission
                     $("button.btn-primary").click(function (e) {
@@ -357,17 +365,25 @@
                             },
                             success: function (data) {
                                 // Handle the response data and update your HTML
-
+                                $("#not-found").empty();
+                                resultNotFoundAppended = false;
                                 // Clear existing rows in the table body
                                 $("tbody").empty();
-
-                                // Iterate over each row in the response data
-                                $.each(data, function (index, row) {
+                                
+                                if(data.message){
+                                    $("#not-found").append('<div class="alert alert-warning" role="alert">' + data.message + '</div>');
+                                } else{
+                                    // Iterate over each row in the response data
+                                    $.each(data, function (index, row) {
                                     // Append a new row to the table with data from the response
                                     $("tbody").append("<tr><td>" + row.municipality_name + "</td><td>" + row.total_male_count + "</td><td>" + row.total_female_count + "</td><td>" + row.total_physical_count + "</td><td>" + row.total_budget_utilized + "</td></tr>");
                                 });
+
+                                }
                             },
                             error: function (error) {
+                                $("#not-found").empty();
+                              $("#not-found").append('<div class="alert alert-danger" role="alert">Program, Quarter, Province, and Year is required!</div>');
                                 console.log('Error:', error);
                             }
                         });

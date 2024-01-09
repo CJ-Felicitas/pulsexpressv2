@@ -345,14 +345,19 @@ class AdminDashboardController extends Controller
                     ->groupBy('municipalities.municipality')
                     ->get();
 
-                return response()->json($data);
-
+                    if (!$data->isEmpty()) {
+                        return response()->json($data);
+                    } else{
+                        return response()->json([
+                            'message' => 'Result Not Found'
+                        ]);
+                    }
             } catch (\Throwable $th) {
                 return response()->json([
                     'message' => $th->getMessage()
                 ], 500);
             }
-        }
+        } 
     }
 
     public function editpassword(Request $request)

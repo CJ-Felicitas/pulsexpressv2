@@ -335,6 +335,24 @@
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
             <script>
+                              $("#not-found").empty();
+                // Create a new Date object
+var currentTime = new Date();
+
+// Get the current time components
+var hours = currentTime.getHours();
+var minutes = currentTime.getMinutes();
+var seconds = currentTime.getSeconds();
+
+// Determine AM/PM
+var meridiem = hours >= 12 ? 'PM' : 'AM';
+
+// Convert hours to 12-hour format
+hours = hours % 12 || 12; // 0 should be treated as 12
+
+// Format the time components as needed
+var formattedTime = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + meridiem;
+
                 var resultNotFoundAppended = false;
                 $(document).ready(function () {
                     // Handle form submission
@@ -383,7 +401,7 @@
                             },
                             error: function (error) {
                                 $("#not-found").empty();
-                              $("#not-found").append('<div class="alert alert-danger" role="alert">Program, Quarter, Province, and Year is required!</div>');
+                              $("#not-found").append('<div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">Program, Quarter, Province, and Year is required! <span class="ml-auto">'+ formattedTime +'</span></div>');
                                 console.log('Error:', error);
                             }
                         });

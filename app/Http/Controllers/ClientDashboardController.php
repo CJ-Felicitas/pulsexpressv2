@@ -309,12 +309,12 @@ class ClientDashboardController extends Controller
                 DB::table('users')
                     ->where('id', $userId)
                     ->update([
-                            'first_name' => $request->first_name,
-                            'middle_name' => $middle_name,
-                            'last_name' => $request->last_name,
-                            'username' => $request->username,
-                            'email' => $request->email,
-                        ]);
+                        'first_name' => $request->first_name,
+                        'middle_name' => $middle_name,
+                        'last_name' => $request->last_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                    ]);
                 DB::commit();
                 session()->flash('client_account_message', 'Account successfully updated!');
                 return redirect('/client/accountsettings');
@@ -360,8 +360,8 @@ class ClientDashboardController extends Controller
                     DB::table('users')
                         ->where('id', $userId)
                         ->update([
-                                'password' => Hash::make($validate['newpassword']),
-                            ]);
+                            'password' => Hash::make($validate['newpassword']),
+                        ]);
                     DB::commit();
                     session()->flash('message', 'Password successfully changed!');
                     return redirect('/client/accountsettings');
@@ -413,18 +413,41 @@ class ClientDashboardController extends Controller
                 break;
         }
 
+        // $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
+
+        // $previous_quarter = DB::table('quarters')
+        //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
+        //     ->first();
+
+        // map to get previous quarter 
+        $quarterMapping = [
+            1 => 4,
+            2 => 1,
+            3 => 2,
+            4 => 3,
+        ];
+
+        // get the current active quarter for the current year
         $current_active_quarter = DB::table('quarters')->where('active', 1)->first();
 
-        $previous_quarter = DB::table('quarters')
-            ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
-            ->first();
+        // assign the map
+        $previous_quarter = $quarterMapping[$current_active_quarter->quarter];
+
+        /**
+         * If the current quarter is one then it will take take current year and subtract
+         * it with one year so that we can fetch the previous 4th quarter last year
+         */
+        $year = Carbon::now()->year;
+        if ($previous_quarter == 1) {
+            $year = Carbon::now()->subYear();
+        }
 
         if ($validated) {
             try {
                 DB::beginTransaction();
                 DB::table('variance')->insert([
                     'program_id' => $programID,
-                    'quarter_id' => $previous_quarter->id,
+                    'quarter_id' => $previous_quarter,
                     'reason_of_variance' => $validated['reason_of_variance'],
                     'steering_measures' => $validated['steering_measures'],
                     'created_at' => Carbon::now(),
@@ -434,9 +457,9 @@ class ClientDashboardController extends Controller
                 // insert to variance_submission_check table
                 DB::table('variance_submission_check')->insert([
                     'program_id' => $programID,
-                    'quarter_id' => $previous_quarter->id,
+                    'quarter_id' => $previous_quarter,
                     'submitted' => 1,
-                    'year' => 2023,
+                    'year' => $year,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);

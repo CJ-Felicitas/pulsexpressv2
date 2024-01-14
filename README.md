@@ -3,3 +3,4 @@ This is a project created by the interns of the University of Southeastern Phili
 <br>
 - CJ Felicitas -  Developer 
 - Francis Sale - Project Manager
+- Teddy Adlawan - OJT Supervisor

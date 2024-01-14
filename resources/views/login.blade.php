@@ -42,18 +42,18 @@
                                     <form class="user" method="POST" action="/login">
                                         @csrf
                                         <div class="form-group">
-                                            <input name="username" class="form-control form-control-user"
+                                            <input name="username" required class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password"
+                                            <input type="password" required name="password"
                                                 class="form-control form-control-user" id="exampleInputPassword"
                                                 placeholder="Password">
                                         </div>
                                         @if (isset($message) && $message == 'Invalid Credentials')
                                             <div class="alert alert-danger" role="alert">
-                                                Login Failed, Please Try again.
+                                                Invalid Credentials, Please Try again.
                                             </div>
                                         @endif
 

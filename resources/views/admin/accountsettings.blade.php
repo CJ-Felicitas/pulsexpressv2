@@ -345,11 +345,11 @@
                     <form action="/admin/editpassword" method="post">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" name="currentpassword" class="form-control mt-2"
+                                <input type="password" name="currentpassword" class="form-control mt-2"
                                     placeholder="Current Password">
-                                <input type="text" name="newpassword" class="form-control mt-2"
+                                <input type="password" name="newpassword" class="form-control mt-2"
                                     placeholder="New Password">
-                                <input type="text" name="confirmpassword" class="form-control mt-2"
+                                <input type="password" name="confirmpassword" class="form-control mt-2"
                                     placeholder="Confirm New Password">
                             </div>
                         </div>

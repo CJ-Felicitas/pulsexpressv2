@@ -167,7 +167,7 @@
                             <div class="card shadow mb-4 mt-4">
                                 <div class="card-header py-3">
                                     <h6 class="text-primary font-weight-bold m-0">
-                                        Set Target <span class="text-secondary">(asterisk <span
+                                        Set Target For this Year <span class="text-secondary">(asterisk <span
                                                 class="text-danger">*</span> indicates required field )</span>
                                     </h6>
                                 </div>

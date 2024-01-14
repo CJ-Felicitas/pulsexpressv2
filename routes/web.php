@@ -17,18 +17,13 @@ use App\Http\Controllers\{
     DavaoDelSurController,
     DavaoOccidentalController,
     DavaoOrientalController,
-    ExportController
+    ExportController,
+    UpdateSystemController
 };
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', [UpdateSystemController::class,'returnview']);
 
-// Route::get('/lmao', function () {
-//     return view('admin.quicksearch');
-// });
-
-Route::get('/getyears', [AdminDashboardController::class, 'getyears']);
+// Route::get('/getyears', [AdminDashboardController::class, 'getyears']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
@@ -68,6 +63,10 @@ Route::middleware(['loggedin'])->group(function () {
         Route::get('/variance', function () {
             return view('admin.variance');
         });
+        Route::get('/archives', function () {
+            return view('admin.archives');
+        });
+        
 
         Route::get('getVariances', [AdminDashboardController::class, 'getVariances']);
         Route::get('/export', [ExportController::class, 'exportData']);

@@ -78,7 +78,7 @@ class ClientDashboardController extends Controller
             }
         }
     }
-
+    
     public function submitReport(Request $request)
     {
         $user = Auth::user();
@@ -117,7 +117,7 @@ class ClientDashboardController extends Controller
 
         $currentDate = Carbon::now('Asia/Manila');
         $submissionWindowStart = $currentDate->copy()->subMonth()->endOfMonth()->startOfDay();
-        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(4)->endOfDay();
+        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(5)->endOfDay();
 
         // $previous_quarter = DB::table('quarters')
         //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
@@ -139,13 +139,12 @@ class ClientDashboardController extends Controller
                     'total_physical_count' => $validate['total_count'],
                     'total_budget_utilized' => $validate['budget_utilized'],
                     'year' => Carbon::now()->year,
+                    // 'year' => 2023,
                     'created_at' => Carbon::now('Asia/Manila'),
                     'updated_at' => Carbon::now('Asia/Manila'),
                 ]);
-
                 if ($request->hasFile('upload_inputfile')) {
                     $files = $request->file('upload_inputfile');
-
                     foreach ($files as $file) {
                         $timestamp = now()->format('Y-m-d_H-i-s');
                         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
@@ -161,7 +160,6 @@ class ClientDashboardController extends Controller
                         ]);
                     }
                 }
-
                 DB::commit();
                 return redirect()->back()->with('report_success', 'Report Submitted');
                 }

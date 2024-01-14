@@ -1,3 +1,0 @@
-- wala pay municipalities or district ang davao city
-- mag add ug previous years na result na page
-- medyo buggy pa gamay ang variance ug dili pa sad ko sure if buggy ba gyud

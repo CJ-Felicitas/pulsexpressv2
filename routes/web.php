@@ -50,6 +50,7 @@ Route::middleware(['loggedin'])->group(function () {
     Route::prefix('admin')->middleware('adminroutes')->group(function () {
         // individual routes of the admin
         Route::post('/applytarget', [TargetController::class, 'updateTarget']);
+        Route::post('/addTarget',[TargetController::class,'addTarget']);
         Route::get('/history', [AdminDashboardController::class, 'getReportHistoryPage']);
         Route::post('/search', [AdminDashboardController::class, 'quicksearch']);
         Route::get('/get-report-details/{reportId}', [AdminDashboardController::class, 'getReportDetails']);

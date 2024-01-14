@@ -155,12 +155,12 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Target has been applied !
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Target has been applied !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
                     <div class="row">
                         <div class="col-md-12 mx-auto">
@@ -178,21 +178,20 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="">Physical Count Target <span
                                                                     class="text-danger">*</span> </label>
-                                                            <input name="physical_target" type="text"
-                                                                class="form-control">
+                                                            <input placeholder="Physical Target" name="physical_target"
+                                                                type="text" class="form-control">
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="">Budget Target <span
                                                                     class="text-danger">*</span> </label>
-                                                            <input name="budget_target" type="text"
-                                                                class="form-control">
+                                                            <input placeholder="Budget Target" name="budget_target"
+                                                                type="text" class="form-control">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <label for="">Quarter<span
-                                                                    class="text-danger">*</span>
+                                                        <div class="col-md-3">
+                                                            <label for="">Quarter<span class="text-danger">*</span>
                                                             </label>
                                                             <select name="quarter" class="form-control"
                                                                 id="exampleFormControlSelect1">
@@ -203,14 +202,18 @@
                                                                 <option value="3">3rd Quarter</option>
                                                                 <option value="4">4th Quarter</option>
                                                             </select>
-
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="">Year<span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" name="year" placeholder="Year"
+                                                                class="form-control">
                                                         </div>
                                                     </div>
 
                                                     <div class="row my-2">
                                                         <div class="col-md-12">
-                                                            <label for="">Program <span
-                                                                    class="text-danger">*</span>
+                                                            <label for="">Program <span class="text-danger">*</span>
                                                             </label>
                                                             <select name="program" class="form-control"
                                                                 id="exampleFormControlSelect1">
@@ -235,8 +238,15 @@
                                                         </div>
                                                     </div>
 
+
+
+
+
                                                     <div class="row">
                                                         <div class="col-md-12 text-right mt-3">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#addTargetModal">Add
+                                                                Target</button>
                                                             <button type="submit" class="btn btn-primary">Set
                                                                 Target</button>
                                                         </div>
@@ -247,78 +257,8 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--  --}}
+                            {{-- --}}
                             <div>
-                                {{-- <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Quarterly Summary</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <label for=""><b>Pantawid Pamilyang Pilipino Program</b></label>
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Quarter</th>
-                                                        <th>Physical Target</th>
-                                                        <th>Budget Target</th>
-                                                        <th>Status</th>
-                                                        <td>Variance</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @php
-                                                        $target_data = session('target_data');
-                                                    @endphp
-                                                    @if ($target_data)
-                                                        @foreach ($target_data['fourps'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }} / Output</td>
-                                                                <td>{{ $row->budget_target }} / Output</td>
-                                                                <td>  <span class="badge badge-success">
-                                                                    Active
-                                                                </span></td>
-                                                                <td><button class="btn btn-primary btn-block">View Variance</button></td>
-
-                                                            </tr>
-                                                        @endforeach
-                                                    @endif
-
-                                                </tbody>
-                                            </table>
-                                            <hr>
-                                            <label for=""><b>Sustainable Livelihood Program</b></label>
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Quarter</th>
-                                                        <th>Physical Target</th>
-                                                        <th>Budget Target</th>
-                                                        <th>Last Updated</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @php
-                                                        $target_data = session('target_data');
-                                                    @endphp
-                                                    @if ($target_data)
-                                                        @foreach ($target_data['fourps'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-
-                                                            </tr>
-                                                        @endforeach
-                                                    @endif
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
@@ -333,23 +273,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['fourps'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['fourps'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
 
                                                 </tbody>
@@ -371,22 +312,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['slp'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['slp'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -408,22 +351,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['kalahi'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['kalahi'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -443,22 +388,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['spp'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['spp'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -480,22 +427,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['slp'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['slp'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -517,22 +466,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['drrm'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['drrm'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -553,22 +504,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['centenarrian'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['centenarrian'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -590,22 +543,24 @@
                                                         <th>Quarter</th>
                                                         <th>Physical Target</th>
                                                         <th>Budget Target</th>
+                                                        <th>Year</th>
                                                         <th>Last Updated</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $target_data = session('target_data');
+                                                    $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                        @foreach ($target_data['aics'] as $row)
-                                                            <tr>
-                                                                <td>{{ $row->quarter_id }}</td>
-                                                                <td>{{ $row->physical_target }}</td>
-                                                                <td>{{ $row->budget_target }}</td>
-                                                                <td>{{ $row->updated_at }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @foreach ($target_data['aics'] as $row)
+                                                    <tr>
+                                                        <td>{{ $row->quarter_id }}</td>
+                                                        <td>{{ $row->physical_target }}</td>
+                                                        <td>{{ $row->budget_target }}</td>
+                                                        <td>{{$row->year}}</td>
+                                                        <td>{{ $row->updated_at }}</td>
+                                                    </tr>
+                                                    @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -619,7 +574,7 @@
 
                 </div>
                 <!-- End of Content Wrapper -->
-                {{-- end main  --}}
+                {{-- end main --}}
 
             </div>
             <!-- End of Page Wrapper -->
@@ -629,9 +584,93 @@
                 <i class="fas fa-angle-up"></i>
             </a>
 
+
+            <!-- Add Target Modal -->
+            <div class="modal fade" id="addTargetModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add a Program Target</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <!--  -->
+                        <div class="row p-3">
+                            <div class="col-md-12">
+                                Add a new target instead of updating a current target
+                                <div class="alert mt-2 alert-info alert-dismissible fade show" role="alert">
+                                    Asterisk<span class="text-danger">*</span> indicates required field</div>
+                                <hr>
+                                <form action="/admin/addTarget" method="post">
+                                    @csrf
+                                    <label for="">Program <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="program" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="" disabled selected>Select Program
+                                        </option>
+                                        <option value="1">Pantawid Pamilyang Pilipino
+                                            Program</option>
+                                        <option value="2">Sustainable Livelihood Program
+                                        </option>
+                                        <option value="4">Kapit Bisig Laban sa Kahirapan
+                                        </option>
+                                        <option value="5">Social Pension Program</option>
+                                        <option value="6">Supplementary Feeding Program
+                                        </option>
+                                        <option value="7">Disaster Risk and Reduction
+                                            Management</option>
+                                        <option value="3">Centenarrian Program</option>
+                                        <option value="8">Assistance to Individuals in
+                                            Crisis Situation
+                                        </option>
+                                    </select>
+
+                                    <label class="mt-2" for="">Quarter<span class="text-danger">*</span>
+                                    </label>
+                                    <select name="quarter" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="" disabled selected>Select Quarter
+                                        </option>
+                                        <option value="1">1st Quarter</option>
+                                        <option value="2">2nd Quarter</option>
+                                        <option value="3">3rd Quarter</option>
+                                        <option value="4">4th Quarter</option>
+                                    </select>
+
+                                    <label class="mt-2" for="">Physical Target <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="physical_target"
+                                        placeholder="Physical Target">
+
+                                    <label class="mt-2" for="">Budget Target <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="budget_target"
+                                        placeholder="Budget Target">
+
+                                    <label class="mt-2" for="">Year <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="year" placeholder="Year">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-right mt-3">
+
+                                            <button type="submit" class="btn btn-primary">Add Target</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of Add Target Modal  -->
+
             <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

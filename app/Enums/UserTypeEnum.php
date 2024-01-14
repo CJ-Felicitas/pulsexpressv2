@@ -6,12 +6,13 @@ use Nasyrov\Laravel\Enums\Enum;
 
 class UserTypeEnum extends Enum
 {
+    // admin
     const ADMIN = 1;
     const GUEST = 2;
     const TESTER = 3;
     const PROGRAM = 4;
 
-    // programs
+    // client
     const FOURPS = 5;
     const KALAHI = 6;
     const SLP = 7;

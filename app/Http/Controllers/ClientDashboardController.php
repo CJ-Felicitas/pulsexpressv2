@@ -341,6 +341,7 @@ class ClientDashboardController extends Controller
         // get the id of the current authenticated user
         $user = Auth::user();
         $userId = $user->id;
+        
         // get current user
         $current_user = DB::table('users')
             ->where('id', $userId)
@@ -429,6 +430,7 @@ class ClientDashboardController extends Controller
                     'program_id' => $programID,
                     'quarter_id' => $previous_quarter->id,
                     'submitted' => 1,
+                    'year'=> 2023,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);

@@ -267,7 +267,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="fourps" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -306,7 +306,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="slp" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -345,7 +345,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="kalahi" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -382,7 +382,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="spp" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -421,7 +421,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="sfp" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -460,7 +460,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="drrm" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -498,7 +498,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="centenarrian" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -537,7 +537,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <table id="aics" class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Quarter</th>
@@ -714,6 +714,19 @@
             <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
             <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
             <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+
+                    <script>
+                    $(document).ready(function() {
+                       $('#fourps').DataTable(); // Initialize for Pantawid Pamilyang Pilipino Program table
+                       $('#slp').DataTable(); // Initialize for Sustainable Livelihood Program table
+                       $('#kalahi').DataTable();
+                       $('#spp').DataTable();
+                       $('#sfp').DataTable();
+                       $('#drrm').DataTable();
+                       $('#centenarrian').DataTable();
+                       $('#aics').DataTable();
+                    });
+                 </script>
 
 
 </body>

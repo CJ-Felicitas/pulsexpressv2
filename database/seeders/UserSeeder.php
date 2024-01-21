@@ -90,5 +90,15 @@ class UserSeeder extends Seeder
         ];
 
         DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
+        
+        $data = [
+            'name' => 'Centenarrian',
+            'username'=> 'centenarrian',
+            'password'=> Hash::make('centenarrian@123'),
+            'user_type' => UserTypeEnum::AICS
+
+        ];
+
+        DB::table('users')->upsert($data, ['name', 'password'], ['name', 'password']);
     }
 }

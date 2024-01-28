@@ -247,7 +247,7 @@
                                                             <button type="button" class="btn btn-primary"
                                                                 data-toggle="modal" data-target="#addTargetModal">Add
                                                                 Target</button>
-                                                            <button type="submit" class="btn btn-primary">Set
+                                                            <button type="submit" class="btn btn-primary">Update
                                                                 Target</button>
                                                         </div>
                                                     </div>

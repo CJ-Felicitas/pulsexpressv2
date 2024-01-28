@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
             'name' => 'Centenarrian',
             'username'=> 'centenarrian',
             'password'=> Hash::make('centenarrian@123'),
-            'user_type' => UserTypeEnum::AICS
+            'user_type' => UserTypeEnum::CENTENARRIAN
 
         ];
 

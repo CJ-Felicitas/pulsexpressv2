@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Enums\UserTypeEnum;
 use DB;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Storage;
 class ClientDashboardController extends Controller
 {
     public function returnView(Request $request)
@@ -117,7 +117,7 @@ class ClientDashboardController extends Controller
 
         $currentDate = Carbon::now('Asia/Manila');
         $submissionWindowStart = $currentDate->copy()->subMonth()->endOfMonth()->startOfDay();
-        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(5)->endOfDay();
+        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(30)->endOfDay();
 
         // $previous_quarter = DB::table('quarters')
         //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)
@@ -143,20 +143,39 @@ class ClientDashboardController extends Controller
                         'created_at' => Carbon::now('Asia/Manila'),
                         'updated_at' => Carbon::now('Asia/Manila'),
                     ]);
+                    // if ($request->hasFile('upload_inputfile')) {
+                    //     $files = $request->file('upload_inputfile');
+                    //     foreach ($files as $file) {
+                    //         $timestamp = now()->format('Y-m-d_H-i-s');
+                    //         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
+                    //         $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
+                    //         // $file->storeAs('public/images', $fileName);
+                    //         // $file->storeAs('images', $fileName);
+                    //         $file->move(public_path('images'), $fileName);
+                    //         DB::table('image_reports')->insert([
+                    //             'report_id' => $reportId,
+                    //             'image_path' => 'images/' . $fileName,
+                    //             'created_at' => Carbon::now(),
+                    //             'updated_at' => Carbon::now(),
+                    //         ]);
+                    //     }
+                    // }
                     if ($request->hasFile('upload_inputfile')) {
                         $files = $request->file('upload_inputfile');
                         foreach ($files as $file) {
                             $timestamp = now()->format('Y-m-d_H-i-s');
                             $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
                             $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
-                            // $file->storeAs('public/images', $fileName);
-                            // $file->storeAs('images', $fileName);
-                            $file->move(public_path('images'), $fileName);
+                    
+                            // Store the file on the FTP server
+                            Storage::disk('ftp')->put($fileName, file_get_contents($file));
+                    
+                            // Update the database record
                             DB::table('image_reports')->insert([
                                 'report_id' => $reportId,
-                                'image_path' => 'images/' . $fileName,
-                                'created_at' => Carbon::now(),
-                                'updated_at' => Carbon::now(),
+                                'image_path' => 'ftp://' . $fileName, // Assuming your FTP root is set correctly
+                                'created_at' => now(),
+                                'updated_at' => now(),
                             ]);
                         }
                     }
@@ -166,6 +185,7 @@ class ClientDashboardController extends Controller
                     return redirect()->back()->with('report_error', 'Unable to submit the report');
                 }
             } catch (\Throwable $th) {
+                DB::rollBack();
                 return response()->json([
                     'message' => $th->getMessage(),
                 ]);

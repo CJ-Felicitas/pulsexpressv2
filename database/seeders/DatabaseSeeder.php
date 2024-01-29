@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuarterSeeder::class);
         $this->call(DistrictsSeeder::class);
         $this->call(MunicipalitiesSeeder::class);
+        $this->call(DavaoCitySeeder::class);
         $this->call(TargetSeeder::class);
     }
 }

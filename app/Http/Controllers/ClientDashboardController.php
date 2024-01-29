@@ -117,7 +117,7 @@ class ClientDashboardController extends Controller
 
         $currentDate = Carbon::now('Asia/Manila');
         $submissionWindowStart = $currentDate->copy()->subMonth()->endOfMonth()->startOfDay();
-        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(30)->endOfDay();
+        $submissionWindowEnd = $currentDate->copy()->startOfMonth()->addDays(31)->endOfDay();
 
         // $previous_quarter = DB::table('quarters')
         //     ->where('id', ($current_active_quarter->id - 1 + 4) % 4 + 1)

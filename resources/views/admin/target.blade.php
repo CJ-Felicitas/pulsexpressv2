@@ -260,6 +260,11 @@
                             {{-- --}}
                             <div>
 
+
+                                   
+
+
+
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Pantawid Pamilyang Pilipino
@@ -491,44 +496,42 @@
                                     </div>
                                 </div>
 
-
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Centenarrian Program</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table id="centenarrian" class="table table-bordered" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Quarter</th>
-                                                        <th>Physical Target</th>
-                                                        <th>Budget Target</th>
-                                                        <th>Year</th>
-                                                        <th>Last Updated</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @php
-                                                    $target_data = session('target_data');
-                                                    @endphp
-                                                    @if ($target_data)
-                                                    @foreach ($target_data['centenarrian'] as $row)
-                                                    <tr>
-                                                        <td>{{ $row->quarter_id }}</td>
-                                                        <td>{{ $row->physical_target }}</td>
-                                                        <td>{{ $row->budget_target }}</td>
-                                                        <td>{{$row->year}}</td>
-                                                        <td>{{ $row->updated_at }}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                    @endif
-                                                </tbody>
-                                            </table>
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weigh   t-bold text-primary">Centenarrian Program</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="centenarrian" class="table table-bordered" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Quarter</th>
+                                                            <th>Physical Target</th>
+                                                            <th>Budget Target</th>
+                                                            <th>Year</th>
+                                                            <th>Last Updated</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @php
+                                                        $target_data = session('target_data');
+                                                        @endphp
+                                                        @if ($target_data)
+                                                        @foreach ($target_data['cent'] as $row)
+                                                        <tr>
+                                                            <td>{{ $row->quarter_id }}</td>
+                                                            <td>{{ $row->physical_target }}</td>
+                                                            <td>{{ $row->budget_target }}</td>
+                                                            <td>{{$row->year}}</td>
+                                                            <td>{{ $row->updated_at }}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">

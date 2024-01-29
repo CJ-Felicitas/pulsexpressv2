@@ -16,7 +16,7 @@ class ProgramsSeeder extends Seeder
         $data = [
             ['name' => 'Pantawid Pamilyang Pilipino Program'],
             ['name' => 'Sustainable Livelihood Program'],
-            ['name' => 'Pantawid Pamilyang Pilipino Program'],
+            ['name' => 'Centenarrian'],
             ['name' => 'Kapit Bisig Laban Sa Kahirapan'],
             ['name' => 'Social Pension Program'],
             ['name' => 'Supplementary Feeding Program'],

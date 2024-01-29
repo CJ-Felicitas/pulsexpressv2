@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MunicipalitiesSeeder::class);
         $this->call(DavaoCitySeeder::class);
         $this->call(TargetSeeder::class);
+        $this->call(DeploymentIndicatorSeeder::class);  
     }
 }

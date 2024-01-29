@@ -143,42 +143,50 @@ class ClientDashboardController extends Controller
                         'created_at' => Carbon::now('Asia/Manila'),
                         'updated_at' => Carbon::now('Asia/Manila'),
                     ]);
-                    // if ($request->hasFile('upload_inputfile')) {
-                    //     $files = $request->file('upload_inputfile');
-                    //     foreach ($files as $file) {
-                    //         $timestamp = now()->format('Y-m-d_H-i-s');
-                    //         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
-                    //         $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
-                    //         // $file->storeAs('public/images', $fileName);
-                    //         // $file->storeAs('images', $fileName);
-                    //         $file->move(public_path('images'), $fileName);
-                    //         DB::table('image_reports')->insert([
-                    //             'report_id' => $reportId,
-                    //             'image_path' => 'images/' . $fileName,
-                    //             'created_at' => Carbon::now(),
-                    //             'updated_at' => Carbon::now(),
-                    //         ]);
-                    //     }
-                    // }
+                    /**
+                     * 
+                     * For local storage
+                     */
                     if ($request->hasFile('upload_inputfile')) {
                         $files = $request->file('upload_inputfile');
                         foreach ($files as $file) {
                             $timestamp = now()->format('Y-m-d_H-i-s');
                             $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
                             $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
-                    
-                            // Store the file on the FTP server
-                            Storage::disk('ftp')->put($fileName, file_get_contents($file));
-                    
-                            // Update the database record
+                            // $file->storeAs('public/images', $fileName);
+                            // $file->storeAs('images', $fileName);
+                            $file->move(public_path('images'), $fileName);
                             DB::table('image_reports')->insert([
                                 'report_id' => $reportId,
-                                'image_path' => 'ftp://' . $fileName, // Assuming your FTP root is set correctly
-                                'created_at' => now(),
-                                'updated_at' => now(),
+                                'image_path' => 'images/' . $fileName,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
                             ]);
                         }
                     }
+                    /**\
+                     * for ftp
+                     */
+
+                    // if ($request->hasFile('upload_inputfile')) {
+                    //     $files = $request->file('upload_inputfile');
+                    //     foreach ($files as $file) {
+                    //         $timestamp = now()->format('Y-m-d_H-i-s');
+                    //         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
+                    //         $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
+                    
+                    //         // Store the file on the FTP server
+                    //         Storage::disk('ftp')->put($fileName, file_get_contents($file));
+                    
+                    //         // Update the database record
+                    //         DB::table('image_reports')->insert([
+                    //             'report_id' => $reportId,
+                    //             'image_path' => 'ftp://' . $fileName, // Assuming your FTP root is set correctly
+                    //             'created_at' => now(),
+                    //             'updated_at' => now(),
+                    //         ]);
+                    //     }
+                    // }
                     DB::commit();
                     return redirect()->back()->with('report_success', 'Report Submitted');
                 } else {

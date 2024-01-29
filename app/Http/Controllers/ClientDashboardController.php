@@ -9,6 +9,7 @@ use App\Enums\UserTypeEnum;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+
 class ClientDashboardController extends Controller
 {
     public function returnView(Request $request)
@@ -129,6 +130,15 @@ class ClientDashboardController extends Controller
             try {
                 if ($currentDate->between($submissionWindowStart, $submissionWindowEnd)) {
                     DB::beginTransaction();
+
+                    DB::table('deployed')
+                        ->where('status', 'valid')
+                        ->update(['signal' => '0']);
+
+                    DB::table('deployed')
+                        ->where('status', 'invalid')
+                        ->update(['signal' => '1']);
+
                     $reportId = DB::table('reports')->insertGetId([
                         'program_id' => $user_type,
                         'province_id' => $validate['province_id'],
@@ -174,10 +184,10 @@ class ClientDashboardController extends Controller
                     //         $timestamp = now()->format('Y-m-d_H-i-s');
                     //         $fileName = $timestamp . "_" . $reportId . "_" . $file->getClientOriginalName();
                     //         $fileName = preg_replace("/[^A-Za-z0-9_\-\.]/", '_', $fileName);
-                    
+
                     //         // Store the file on the FTP server
                     //         Storage::disk('ftp')->put($fileName, file_get_contents($file));
-                    
+
                     //         // Update the database record
                     //         DB::table('image_reports')->insert([
                     //             'report_id' => $reportId,

@@ -436,7 +436,7 @@
                                                     $target_data = session('target_data');
                                                     @endphp
                                                     @if ($target_data)
-                                                    @foreach ($target_data['slp'] as $row)
+                                                    @foreach ($target_data['sfp'] as $row)
                                                     <tr>
                                                         <td>{{ $row->quarter_id }}</td>
                                                         <td>{{ $row->physical_target }}</td>

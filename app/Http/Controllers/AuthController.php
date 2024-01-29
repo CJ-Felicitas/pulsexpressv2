@@ -120,10 +120,23 @@ class AuthController extends Controller
             // check if both are true
             $isAchieved = $isBudgetAchieved && $isPhysicalCountAchieved;
 
-            // for fresh deployment in production servers
-            $count_reports = DB::table('reports')->count();
+            // for fresh deployment in production servers, checks the table if the system is deployed freshly
+            $check_deployment_signal = DB::table('deployed')
+                ->where('status', 'valid')
+                ->first();
 
-            if (!($isAchieved) && ($user->user_type !== UserTypeEnum::ADMIN) && !$variance_check && !$count_reports == 0) {
+            $check_if_prev_quarter_present = DB::table('reports')
+                ->where('quarter_id', $previous_quarter)
+                ->where('year', Carbon::now()->subYear())
+                ->first();
+
+            // check if the signal hasn't been changed
+            $verify_deployment_signal = ($check_deployment_signal->signal == 1);
+            
+            // check if there are any previous quarter that are present in the previous year 
+            $verify_prev_quarter_present = ($check_if_prev_quarter_present);
+            
+            if (!($isAchieved) && ($user->user_type !== UserTypeEnum::ADMIN) && (!$variance_check) && (!$verify_deployment_signal) && ($verify_prev_quarter_present)) {
                 return view('client.variance');
             } else {
                 return redirect('/client/dashboard');

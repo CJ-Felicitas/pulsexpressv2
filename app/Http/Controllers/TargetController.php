@@ -49,7 +49,7 @@ class TargetController extends Controller
         ->get();
       
         $centenarrian = DB::table('program_targets')
-        ->where('id', ProgramsEnum::CENTENARRIAN)
+        ->where('program_id', ProgramsEnum::CENTENARRIAN)
         ->get();
       
         $aics = DB::table('program_targets')
@@ -64,7 +64,7 @@ class TargetController extends Controller
             'spp' => $spp,
             'sfp' => $sfp,
             'drrm' => $drrm,
-            'centenarrian' => $centenarrian,
+            'cent' => $centenarrian,
             'aics' => $aics,
         ]]);
 
@@ -115,7 +115,7 @@ class TargetController extends Controller
             'program' => 'required',
             'year' => 'required'
         ]);
-
+   
         if ($validate) {
             try {
                 // data to be inserted in the program_targets table

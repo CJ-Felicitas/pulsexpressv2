@@ -223,13 +223,15 @@
                                 <div class="row my-3">
                                     <div class="col-md-4">
                                         <label for="">Number of Females</label>
-                                        <input required name="female_count" type="text" class="form-control"
-                                            placeholder="Female Count" oninput="updateTotalCount()">
+                                        <input id="female_input" required name="female_count" type="text" class="form-control"
+                                            placeholder="Female Count"  oninput="validateInputFemale(this)">
+                                            <span id="numericWarningFemale" style="color: red;"></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Number of Males</label>
-                                        <input required name="male_count" type="text" class="form-control"
-                                            placeholder="Male Count" oninput="updateTotalCount()">
+                                        <input id="male_input" required name="male_count" type="text" class="form-control"
+                                            placeholder="Male Count" oninput="validateInputMale(this)">
+                                            <span id="numericWarningMale" style="color: red;"></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Total Physical Count</label>
@@ -242,7 +244,7 @@
                                     <div class="col-md-6">
                                         <label for="">Physical Target</label>
                                         @php
-                                            $data = session('data')->first();
+$data = session('data')->first();
 
                                         @endphp
                                         <input type="text" class="form-control" disabled
@@ -257,8 +259,9 @@
                                 <div class="row my-3">
                                     <div class="col-md-6">
                                         <label for="">Total Budget Utilized</label>
-                                        <input required name="budget_utilized" type="text" class="form-control"
-                                            placeholder="Total Budget">
+                                        <input id="budget_input" required name="budget_utilized" type="text" class="form-control"
+                                            placeholder="Total Budget" oninput="validateInputBudget(this)">
+                                            <span id="numericWarningBudget" style="color: red;"></span>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">Quarter</label>
@@ -291,7 +294,7 @@
                                 </div>
 
 
-                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                <button type="submit" id="submitReport" class="btn btn-primary btn-block">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -352,6 +355,87 @@
     <!-- Custom scripts for all pages -->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
+    <!-- input validations for female, male, budget, and so on, -->
+    <script>
+         document.getElementById('submitReport').disabled = true;
+// check if all fields are ready for submission
+function submit_ready() {
+    // console.log("submit ready function called");
+    var female_input = document.getElementById('female_input').value.trim();
+    var female_integer = /^\d+$/.test(female_input);
+    // console.log("female integer ----------------------");
+    // console.log(female_integer)
+    var male_input = document.getElementById('male_input').value.trim();
+    var male_integer = /^\d+$/.test(male_input);
+    // console.log("male integer ----------------------");
+    // console.log(male_integer)
+    var budget_input = document.getElementById('budget_input').value.trim();
+    var budget_double = /^\d+(\.\d+)?$/.test(budget_input);
+    // console.log("budget double  ----------------------");
+    // console.log(budget_double)
+
+    // Check if all conditions are true before enabling the submit button
+    if ((female_integer && male_integer && budget_double)===true) {
+        document.getElementById('submitReport').disabled = false;
+    } else {
+        document.getElementById('submitReport').disabled = true;
+    }
+}
+
+
+
+    function validateInputFemale(inputElement) {
+        // console.log("female function called");
+        updateTotalCount();
+        var inputValue = inputElement.value.trim();
+        var isInteger = /^\d+$/.test(inputValue);
+        // console.log(isInteger);
+
+        var warningSpanFemale = document.getElementById('numericWarningFemale');
+
+        if (!isInteger) {
+            warningSpanFemale.textContent = 'Please enter numeric values only.';
+        } else {
+            warningSpanFemale.textContent = '';
+        }
+        submit_ready();
+    }
+
+    function validateInputMale(inputElement) {
+        // console.log("male function called");
+        updateTotalCount();
+        var inputValue = inputElement.value.trim();
+        var isInteger = /^\d+$/.test(inputValue);
+        // console.log(isInteger);
+
+        var warningSpanMale = document.getElementById('numericWarningMale');
+
+        if (!isInteger) {
+            warningSpanMale.textContent = 'Please enter numeric values only.';
+        } else {
+            warningSpanMale.textContent = '';
+        }
+        submit_ready();
+    }
+    
+    function validateInputBudget(inputElement) {
+        // console.log("budget function called");
+        var inputValue = inputElement.value.trim();
+        var isDouble = /^\d+(\.\d+)?$/.test(inputValue);
+        // console.log(isDouble);
+
+        var warningSpanBudget = document.getElementById('numericWarningBudget');
+
+        if (!isDouble) {
+            warningSpanBudget.textContent = 'Please enter numeric values only.';
+        } else {
+            warningSpanBudget.textContent = '';
+        }
+        submit_ready();
+    }
+
+
+</script>
     <script>
         $(document).ready(function() {
             // Event listener for province selection

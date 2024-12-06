@@ -35,11 +35,20 @@ COPY . /var/www
 # Install Laravel dependencies using Composer
 RUN composer install --no-dev --optimize-autoloader
 
+# Copy .env.example to .env and update database values
+RUN cp .env.example .env && \
+    sed -i 's/DB_DATABASE=.*/DB_DATABASE=pulsexpress/' .env && \
+    sed -i 's/DB_USERNAME=.*/DB_USERNAME=pulsexpress/' .env && \
+    sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=pulsexpress/' .env
+
 # Set the appropriate permissions for Laravel directories
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
 # Expose port 8000 for Laravel's built-in server
 EXPOSE 8000
+
+# Generate application key
+RUN php artisan key:generate
 
 # Command to start Laravel's development server
 CMD php artisan serve --host=0.0.0.0 --port=8000
